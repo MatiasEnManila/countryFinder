@@ -1,0 +1,69 @@
+
+.display-container {
+    display: flex;
+    flex-direction: column;
+    height: 630px;
+    width: 425px;
+    background-color: #007749;
+    border-radius: 30%;
+
+}
+
+
+.country-name {
+    height: 10%;
+    width: 95%;
+    margin-top: 20px;   
+    margin-left: 12px;
+    margin-bottom: 20px;
+    border: 3px solid black;
+    border-radius: 30px;
+    background-color: #F1AD02;
+}
+
+
+/* .text-props {
+    text-align: center;
+} */
+
+
+.svg {
+    max-width: 25vw;
+    max-height: 30vh;
+    margin-top: 20px;
+}
+
+
+.info-container {
+    /* height: 50%; */
+    width: 70%;
+    list-style-type: none;
+    margin-left: 15%;
+    /* margin-right: 20%;  */
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: #F1AD02;
+    border: 3px solid black;
+    border-radius: 35px;
+}
+
+.info-italic {
+    font-style: italic;
+}
+
+
+.goback-btn {
+    margin-top: 20px;
+}
+
+
+.see-map {
+    margin-left: 20px;
+    
+}
+
+
+/* 
+.change-bg-color {
+
+} */

@@ -1,0 +1,39 @@
+.map-main-div {
+    display: flex;
+    flex-direction: column;
+    height: 630px;
+    width: 425px;
+    /* background-color:#F1AD02; */
+    border-radius: 35%;
+    background-color:  #081F40;
+}
+
+
+.bg-map {
+    background-color: black;
+}
+
+.map-styling {
+    height: 95%;
+    width: 95%;
+    margin-top: 2%;
+    margin-bottom: 20px;
+    
+}
+
+.country-flag {
+    background-color: #F1AD02;
+    border: 5px solid rgb(174, 130, 130);
+    width: 25%;
+    border-radius: 60px;
+    margin-left: 37%;
+    margin-top: 2%;
+    padding-bottom: 5px;
+}
+
+.backinfo-btn {
+    width: 26%;
+    margin-top: 10px;
+    margin-left: 36.5%;
+    margin-bottom: 5%;
+}
