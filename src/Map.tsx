@@ -1,10 +1,15 @@
 import './Map.css';
 
 
-function Map( {goBackToDisplay, map, countryName, countryInfo} : string | any ) {
-
+function Map( {goBackToDisplay, map, countryName, countryInfo} ) {
 
   let flagIcon = countryInfo[0].flag;
+  let changeFlags = countryName === 'niger' || countryName === 'china' || countryName === 'georgia';
+
+  if (changeFlags) {
+    flagIcon = countryInfo[1].flag;
+  }
+  
   // let upperCaseCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
     
   return (

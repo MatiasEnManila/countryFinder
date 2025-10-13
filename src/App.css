@@ -82,3 +82,20 @@ input::placeholder {
   width: 95%;
   margin-left: 5px
 }
+
+.loading-picture {
+  width: 45%;
+  margin-bottom: 15px;
+}
+
+.loading-text {
+  margin-bottom: -1rem;
+}
+
+
+.loading-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 35px;
+}
