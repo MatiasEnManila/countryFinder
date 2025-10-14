@@ -1,18 +1,14 @@
-import { useRef, useState } from 'react';
-import { BounceLoader } from "react-spinners";  
+import { useRef, useState } from 'react';  
 import DisplayCountry from './DisplayCountry';
 import worldIcon from './pictures/hello-world2.png'
-import loadingIcon from './pictures/loading-icon.png'
 import './App.css'
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
-// Pre-load svg - coat of arms won't load well
-// Intuitive search 
-// Eswatini coat of arms === undefined (re-arrange CSS?)
+// Intuitive search
+// no coat of arms (i.e eswatini) === undefined (re-arrange CSS?)
 // Caching/ saving locally - reactjs
-// how to loading image hhtml -- reactjs? 
+// how to loading image html -- reactjs? 
 
 function App() {
   
@@ -22,10 +18,9 @@ function App() {
   const [countryInfo, setCountryInfo] = useState({});
   const [frontFace, setFrontFace] = useState(true);
   const [allCountriesNames, setAllCountriesNames] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [svgContent, setSvgContent] = useState(null);
+  // const [svgStatus, setSvgStatus] = useState(false);
 
-
+  
   const handleInputChange = (event: string) => {
     searchedCountry.current = event.target.value.toLowerCase();
     setCountryName(searchedCountry.current);
@@ -44,8 +39,6 @@ function App() {
   
   if (allCountriesNames.length === 0) getAllCountriesNames();
 
-// https://restcountries.com/v3.1/name/georgia?fullText=true
-
   function handleClick() {
     // setLoading(true);
     
@@ -54,31 +47,34 @@ function App() {
     }
     
     fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
-    .then(res => res.json())
+    .then(res => 
+      res.json()
+    ) 
     .then(data => {
-  
-      console.log(data);
+      // console.log(data.status);
       if (data.status === 404) {
         return alert('Country not found!');
       }
-      setCountryInfo(data);
+      // setSvgStatus(true);
+      setCountryInfo(data[0]);
       setFrontFace(!frontFace);
-      setSvgContent(data[0].coatOfArms.png)
     })
     .catch(err => { 
       console.log("ERROR :", err);
       setFrontFace(frontFace);
     });
-
-    // setTimeout(() => {
-    //   setLoading(false);
-    // }, 2000);
   }
-
 
   const goBack = () => {
     setFrontFace(!frontFace);
     setCountryName('');
+  }
+
+  const pressEnterKey = (event) => {
+    if (event.key === 'Enter') {
+      handleClick();
+      event.preventDefault();
+    }
   }
 
   
@@ -94,9 +90,10 @@ function App() {
                 className='input'
                 type="text"
                 placeholder="Search country"
-                onChange={handleInputChange}
+                onChange={ handleInputChange }
+                onKeyDown={ pressEnterKey }
               />
-              <button type="button" className='btn btn-dark search-button' onClick={handleClick}>Search</button>
+              <button type="button" className='btn btn-dark search-button' onClick={handleClick} >Search</button>
 
             </div>
           </div>
@@ -105,57 +102,18 @@ function App() {
         </div>
       </>
     );
-  } else {
-  
-      if (loading) {
-        return (
-        <>
-          <div className='frontface-div'>
-            <div>
-              
-              <h1 className='title fw-medium text-center'>Country finder</h1>
-              <div>
-                <input
-                  className='input'
-                  type="text"
-                  placeholder="Search country"
-                  onChange={handleInputChange}
-                />
-                <button type="button" className='btn btn-dark search-button' onClick={handleClick}>Search</button>
 
-              </div>
-              <div className='loading-icon'>
-
-                <BounceLoader 
-                  color={"#db9541ff"}
-                  loading={loading}
-                  size={150}
-                  aria-label="Loading Spinner"
-                  data-testid="loader"
-                />
-
-                <p className='loading-text'>Loading...</p>
-
-              </div>
-              <img className='loading-picture' src={loadingIcon} />
-
-            </div>
-          </div>
-        </>
-        )
-      } else {
-        return (
-          < DisplayCountry 
-            countryInfo={countryInfo}
-            goBack={goBack}
-            countryInputName={countryName}
-            svgContent={svgContent}
-          />
-        )
-      }
+    } else {
+      return (
+        < DisplayCountry 
+          countryInfo={countryInfo}
+          goBack={goBack}
+          countryInputName={countryName}
+          // svgStatus={svgStatus}
+        />
+      )
     }
-} 
-
+}
 
 
 export default App
