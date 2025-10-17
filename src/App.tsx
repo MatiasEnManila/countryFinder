@@ -6,19 +6,15 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // Intuitive search
-// no coat of arms (i.e eswatini) === undefined (re-arrange CSS?)
-// Caching/ saving locally - reactjs
-// how to loading image html -- reactjs? 
 
 function App() {
   
   // USEREF PERSIST BETWEEN RENDERS, IT'LL BE AVAILABLE IN THE NEXT RENDER (AND CHANGES IN YOUR USEREF WONT TRIGGER A NEW RENDER, UNLIKE USESTATE)
   let searchedCountry = useRef('');
-  const [countryName, setCountryName] = useState('')
+  const [countryName, setCountryName] = useState('');
   const [countryInfo, setCountryInfo] = useState({});
   const [frontFace, setFrontFace] = useState(true);
   const [allCountriesNames, setAllCountriesNames] = useState([]);
-  // const [svgStatus, setSvgStatus] = useState(false);
 
   
   const handleInputChange = (event: string) => {
@@ -26,44 +22,46 @@ function App() {
     setCountryName(searchedCountry.current);
   }
   
+
   const getAllCountriesNames = async () => {
     try {
       const response = await fetch(`https://restcountries.com/v3.1/all?fields=name`);
-      const data = await response.json();
-      
+      const data = await response.json();      
       return setAllCountriesNames(data.map(country => country.name.common).sort());	
     } catch (err) {
       console.error(err);
     }
   }
   
+
   if (allCountriesNames.length === 0) getAllCountriesNames();
 
-  function handleClick() {
-    // setLoading(true);
-    
+
+  const getCountryInfo = async () => {
+
+
     if (countryName === '') {
       return alert('Please insert a country');
     }
-    
-    fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
-    .then(res => 
-      res.json()
-    ) 
-    .then(data => {
-      // console.log(data.status);
-      if (data.status === 404) {
+
+
+    try {
+      const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`);
+      
+      if (response.status === 404) {
         return alert('Country not found!');
       }
-      // setSvgStatus(true);
+      
+      const data = await response.json();
+
       setCountryInfo(data[0]);
       setFrontFace(!frontFace);
-    })
-    .catch(err => { 
-      console.log("ERROR :", err);
-      setFrontFace(frontFace);
-    });
+    } catch (err) {
+      console.error("Error! " + err);
+    }    
   }
+  
+ 
 
   const goBack = () => {
     setFrontFace(!frontFace);
@@ -72,12 +70,13 @@ function App() {
 
   const pressEnterKey = (event) => {
     if (event.key === 'Enter') {
-      handleClick();
+      getCountryInfo();
       event.preventDefault();
     }
   }
 
-  
+
+
   if (frontFace) {
     return (
       <>
@@ -93,11 +92,11 @@ function App() {
                 onChange={ handleInputChange }
                 onKeyDown={ pressEnterKey }
               />
-              <button type="button" className='btn btn-dark search-button' onClick={handleClick} >Search</button>
+              <button type="button" className='btn btn-dark search-button' onClick={ getCountryInfo } >Search</button>
 
             </div>
           </div>
-          <img className='world-picture' src={worldIcon} />
+          <img className='world-picture' src={ worldIcon } />
          
         </div>
       </>
@@ -109,7 +108,6 @@ function App() {
           countryInfo={countryInfo}
           goBack={goBack}
           countryInputName={countryName}
-          // svgStatus={svgStatus}
         />
       )
     }

@@ -4,62 +4,64 @@ import './DisplayCountry.css';
 import Map from './Map';
 
 
-function DisplayCountry({ countryInfo, goBack, countryInputName } : object ) {
+function DisplayCountry({ countryInfo, goBack, countryInputName } : object | string) {
 
+  const [isLoading, setIsLoading] = useState(true);
   const [isItDisplayCountry, setIsItDisplayCountry] = useState(true);
-  const [loading, setLoading] = useState(false);
-  // const navigate = useNavigate();
+  const [coatOfArms, setCoatOfArms] = useState(null);
 
   const apiKey = import.meta.env.VITE_API_SECRET
   const countryMap = `https://www.google.com/maps/embed/v1/place?${apiKey}q=${countryInputName}`;
 
-  
-// it only runs  once when the component mounts and cleans up when it unmounts.
- useEffect(() => {
+
+  const getSvg =  async () => {
+    let svgData;
+
+    try {
+      
+      let svgResponse = await fetch(`https://restcountries.com/v3.1/name/${countryInputName}?fullText=true`);
+      
+      if (svgResponse.status === 200) {
+        svgData = await svgResponse.json();
+        setCoatOfArms(svgData[0].coatOfArms.svg);
+      }
+    } catch (err) {
+      console.error("Error! " + err);
+    }
+    setIsLoading(false);
+  }
+
+
+// it only runs once -  when the component mounts, and cleans up when it unmounts.
+  useEffect(() => {
+
+    getSvg();
+
     const handleKeyDown = (event) => {
       if (event.key === 'Backspace' || event.keyCode === 8) {
-        console.log("testing");
         goBack();
         event.preventDefault();
       }
     };
 
   window.addEventListener('keydown', handleKeyDown);
-  
+
   return () => {
     window.removeEventListener('keydown', handleKeyDown);
   }
- 
- }, []);
+
+  }, []);
 
  
  
-const seeMap = () => {
-  setIsItDisplayCountry(!isItDisplayCountry);
-}
+  const seeMap = () => {
+    setIsItDisplayCountry(!isItDisplayCountry);
+  }
   
-  // console.log(svgStatus);
-  // const getSvg = async () => {
-  //   try {
-  //     const response = await fetch(`https://restcountries.com/v3.1/name/${countryInputName}?fullText=true`);
-  //     const data = await response.json();
-  //     const svg = data[0].coatOfArms.svg;
-      
-  //     if (data.status === 200) {
-  //      return console.log("nihao");
-  //     }
-
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
-  
-  // getSvg();
 
   const countryName = countryInfo.name.official;
-  const coatOfArms = countryInfo.coatOfArms.svg;
   const capitalCity = countryInfo.capital;
-  
+  // const coatOfArms = countryInfo.coatOfArms.svg;
   // ITERATE THROUGH PROPERTIES BY CHECKING LENGTH OF KEYS
   let officialLanguages = '';
   for (let i = 0; i < Object.keys(countryInfo.languages).length; i++) {
@@ -72,28 +74,19 @@ const seeMap = () => {
   const timezones = countryInfo.timezones[0];
   const subRegion = countryInfo.subregion; 
 
-  // PSEUDO CODE: IF STATUS.LOAD === TRUE :
-    
 
   if (isItDisplayCountry) {
     return (  
       <>
         <div className='display-container'>
           <div>
-            <img className='svg' 
-                 src={ loading ?
-                  <BounceLoader
-                    color={"#123443"}
-                    loading={loading}
-                    cssOverride={override}
-                    size={150}
-                    aria-label="Loading Spinner"
-                    data-testid="loader"
-                  />
-                  : 
-                  coatOfArms } 
-            />
-
+            { isLoading 
+              ? 
+              <BounceLoader color={"#123443"} size={150} aria-label="Loading Spinner" data-testid="loader"/> 
+              :
+              <img src={coatOfArms} className='svg' />
+            }
+            
           </div>
           <div className='country-name'>
             <h1 className='text-props fs-3'><b>{ countryName }</b></h1>
@@ -121,7 +114,6 @@ const seeMap = () => {
       <Map 
         goBackToDisplay={seeMap}
         map={countryMap}
-        countryName={countryInputName}
         countryInfo={countryInfo}
       />
     )
