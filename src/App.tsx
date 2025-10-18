@@ -12,17 +12,15 @@ function App() {
   // USEREF PERSIST BETWEEN RENDERS, IT'LL BE AVAILABLE IN THE NEXT RENDER (AND CHANGES IN YOUR USEREF WONT TRIGGER A NEW RENDER, UNLIKE USESTATE)
   let searchedCountry = useRef('');
   const [countryName, setCountryName] = useState('');
-  const [countryInfo, setCountryInfo] = useState({});
   const [frontFace, setFrontFace] = useState(true);
   const [allCountriesNames, setAllCountriesNames] = useState([]);
 
-  
+
   const handleInputChange = (event: string) => {
     searchedCountry.current = event.target.value.toLowerCase();
     setCountryName(searchedCountry.current);
   }
   
-
   const getAllCountriesNames = async () => {
     try {
       const response = await fetch(`https://restcountries.com/v3.1/all?fields=name`);
@@ -32,51 +30,35 @@ function App() {
       console.error(err);
     }
   }
-  
 
-  if (allCountriesNames.length === 0) getAllCountriesNames();
-
-
-  const getCountryInfo = async () => {
+  if (allCountriesNames.length === 0) getAllCountriesNames(); 
 
 
+  const getDisplayCountry = () => {
+    setFrontFace(!frontFace);
     if (countryName === '') {
-      return alert('Please insert a country');
+      alert('Please insert a country!');
     }
+  }
 
-
-    try {
-      const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`);
-      
-      if (response.status === 404) {
-        return alert('Country not found!');
+  
+  const pressEnterKey = (event) => {
+    if (event.key === 'Enter') {
+      getDisplayCountry();
+      if (countryName === '') {
+        alert('Please insert a country!');
       }
-      
-      const data = await response.json();
-
-      setCountryInfo(data[0]);
-      setFrontFace(!frontFace);
-    } catch (err) {
-      console.error("Error! " + err);
-    }    
+      event.preventDefault();
+    }
   }
   
- 
-
+  
   const goBack = () => {
     setFrontFace(!frontFace);
     setCountryName('');
   }
 
-  const pressEnterKey = (event) => {
-    if (event.key === 'Enter') {
-      getCountryInfo();
-      event.preventDefault();
-    }
-  }
-
-
-
+  
   if (frontFace) {
     return (
       <>
@@ -92,7 +74,7 @@ function App() {
                 onChange={ handleInputChange }
                 onKeyDown={ pressEnterKey }
               />
-              <button type="button" className='btn btn-dark search-button' onClick={ getCountryInfo } >Search</button>
+              <button type="button" className='btn btn-dark search-button' onClick={ getDisplayCountry } >Search</button>
 
             </div>
           </div>
@@ -105,9 +87,8 @@ function App() {
     } else {
       return (
         < DisplayCountry 
-          countryInfo={countryInfo}
-          goBack={goBack}
-          countryInputName={countryName}
+            goBack={goBack}
+            countryInputName={countryName}
         />
       )
     }
