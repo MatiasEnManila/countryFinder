@@ -99,3 +99,7 @@ input::placeholder {
   align-items: center;
   margin-top: 35px;
 }
+
+.suggestions {
+  list-style-type: none;
+}

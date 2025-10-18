@@ -16,7 +16,9 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
 
   const getCountryInfo = async () => {
     try {
+
       const response = await fetch(`https://restcountries.com/v3.1/name/${countryInputName}?fullText=true`);
+      
       if (response.status === 404) {
         return alert('Country not found!');
       }
@@ -51,9 +53,11 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
 
 
  
+ 
   const seeMap = () => {
     setIsItDisplayCountry(!isItDisplayCountry);
   }
+
   
 
   const getOfficialLanguages = (countryInfo) => {
