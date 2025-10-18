@@ -5,7 +5,8 @@ import './App.css'
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-// Intuitive search
+
+// Add click on suggestion*
 
 function App() {
   
@@ -44,6 +45,7 @@ function App() {
   if (allCountriesNames.length === 0) getAllCountriesNames(); 
 
 
+  // Clicking
   const getDisplayCountry = () => {
     if (countryName === '') {
       return alert('Please insert a country!');
@@ -51,11 +53,15 @@ function App() {
     setFrontFace(!frontFace);
   }
 
-  
+  // Enter key - REVISE
   const pressEnterKey = (event) => {
     if (event.key === 'Enter') {
+      if (countryName === '') {
+        return alert('Please, insert a country!');
+      } 
       getDisplayCountry();
       event.preventDefault();
+      setFrontFace(!frontFace);
     }
   }
 
@@ -102,7 +108,6 @@ function App() {
         < DisplayCountry 
             goBack={goBack}
             countryInputName={countryName}
-            frontFace={frontFace}
         />
       )
     }

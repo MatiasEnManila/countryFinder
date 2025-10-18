@@ -4,6 +4,7 @@ import './DisplayCountry.css';
 import Map from './Map';
 
 
+
 function DisplayCountry({ goBack, countryInputName } : object | string) {
 
   const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +21,8 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
       const response = await fetch(`https://restcountries.com/v3.1/name/${countryInputName}?fullText=true`);
       
       if (response.status === 404) {
-        return alert('Country not found!');
+         return alert('Country not found!');
+        //  how do we go back from /hear/
       }
       
       const data = await response.json();
@@ -62,15 +64,16 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
 
   const getOfficialLanguages = (countryInfo) => {
     let officialLanguages = '';
+    // ITERATE THROUGH PROPERTIES BY CHECKING LENGTH OF KEYS
     for (let i = 0; i < Object.keys(countryInfo.languages).length; i++) {
       officialLanguages += " " + Object.values(countryInfo.languages)[i];
     }
     return officialLanguages
   }
-  // ITERATE THROUGH PROPERTIES BY CHECKING LENGTH OF KEYS
+
+
 
   if (isItDisplayCountry) {
-
     return (  
       <>
         <div className='display-container'>
@@ -82,6 +85,7 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
               <div style={{ display:isLoading ? 'none' : 'block' }}>
                 <img onLoad={() => isLoading && setIsLoading(false)} src={ countryInfo.coatOfArms.svg } className='svg' />
               </div>
+
               <div className='country-name'>
                 <h1 className='text-props fs-3'><b>{ countryInfo.name.official }</b></h1>
               </div>
@@ -105,12 +109,12 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
       </>
     );
   } else {
-    return (
-      <Map 
-        goBackToDisplay={seeMap}
-        map={countryMap}
-        countryInfo={countryInfo}
-      />
+      return (
+        <Map 
+          goBackToDisplay={seeMap}
+          map={countryMap}
+          countryInfo={countryInfo}
+        />
     )
   }
 } 
