@@ -1,16 +1,20 @@
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import { BounceLoader } from "react-spinners"; 
 import './DisplayCountry.css';
 import Map from './Map';
 
 
 
+// IF STAT === '' - DONT SHOW STAT
+
 function DisplayCountry({ goBack, countryInputName } : object | string) {
 
   const [isLoading, setIsLoading] = useState(true);
   const [isItDisplayCountry, setIsItDisplayCountry] = useState(true);
   const [countryInfo, setCountryInfo] = useState(null);
+  const [isCoat, setIsCoat] = useState(true);
   
+
   const apiKey = import.meta.env.VITE_API_SECRET
   const countryMap = `https://www.google.com/maps/embed/v1/place?${apiKey}q=${countryInputName}`;
 
@@ -21,12 +25,13 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
       const response = await fetch(`https://restcountries.com/v3.1/name/${countryInputName}?fullText=true`);
       
       if (response.status === 404) {
-         return alert('Country not found!');
-        //  how do we go back from /hear/
+         alert('Country not found!');
+         return goBack();
       }
       
       const data = await response.json();
       setCountryInfo(data[0]);
+      setIsCoat(Object.values(data[0].coatOfArms).length);
     } catch (err) {
         console.error("Error! " + err);
       }    
@@ -71,6 +76,7 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
     return officialLanguages
   }
 
+  // console.log(countryInfo);
 
 
   if (isItDisplayCountry) {
@@ -79,12 +85,17 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
         <div className='display-container'>
           { countryInfo && 
             <>
-              <div style={{ display:isLoading ? 'block' : 'none' }}>
-                <BounceLoader color={"#123443"} size={150} aria-label="Loading Spinner" data-testid="loader"/>
-              </div>
-              <div style={{ display:isLoading ? 'none' : 'block' }}>
-                <img onLoad={() => isLoading && setIsLoading(false)} src={ countryInfo.coatOfArms.svg } className='svg' />
-              </div>
+
+              { isCoat > 0 &&
+                <>
+                  <div style={{ display:isLoading ? 'block' : 'none' }}>
+                    <BounceLoader color={"#123443"} size={150} aria-label="Loading Spinner" data-testid="loader"/>
+                  </div>
+                  <div style={{ display:isLoading ? 'none' : 'block' }}>
+                    <img className='svg' onLoad={() => isLoading && setIsLoading(false)} src={ countryInfo.coatOfArms.png } />
+                  </div>
+                </>
+              }
 
               <div className='country-name'>
                 <h1 className='text-props fs-3'><b>{ countryInfo.name.official }</b></h1>
@@ -97,7 +108,7 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
                 <li><b>Demonym: </b><span className='info-italic'>{ Object.values(countryInfo.demonyms)[0].m }</span></li>
                 <li><b>Currency:</b> <span className='info-italic'>{ Object.values(countryInfo.currencies)[0].name }</span></li>
                 <li><b>Timezone: </b><span className='info-italic'>{ countryInfo.timezones[0] }</span></li>
-                <li><b>Subregion: </b><span className='info-italic'>{ countryInfo.subRegion }</span></li>
+                <li><b>Subregion: </b><span className='info-italic'>{ countryInfo.subregion || countryInfo.subRegion }</span></li>
               </div>
             </>
           }

@@ -69,6 +69,7 @@ function App() {
   const goBack = () => {
    setFrontFace(!frontFace);
    setCountryName('');
+   setSuggestion([]);
   }
   
 
