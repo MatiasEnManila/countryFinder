@@ -19,7 +19,6 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
   const [isSubregion, setIsSubregion] = useState(0);
 
 
-
   const apiKey = import.meta.env.VITE_API_SECRET
   const countryMap = `https://www.google.com/maps/embed/v1/place?${apiKey}q=${countryInputName}`;
 
@@ -53,9 +52,8 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
     } catch (err) {
         console.error("Error! " + err);
       }    
-}
+  }
 
-//  LET TEST = OBJECT.VALUES(DATA[0].CAPITAL).LENGTH)
 
 // it only runs once -  when the component mounts, and cleans up when it unmounts.
   useEffect(() => {
@@ -77,8 +75,6 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
   }, []);
 
 
- 
- 
   const seeMap = () => {
     setIsItDisplayCountry(!isItDisplayCountry);
   }
@@ -92,11 +88,11 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
       officialLanguages += " " + Object.values(countryInfo.languages)[i];
       }
       return officialLanguages
-      }
+  }
       
       
       
-      if (isItDisplayCountry) {
+    if (isItDisplayCountry) {
         return (  
           <>
         <div className='display-container'>
