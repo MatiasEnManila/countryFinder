@@ -8,14 +8,13 @@ import Map from './Map';
 // IF STAT === '' - DONT SHOW STAT
 
 function DisplayCountry({ goBack, countryInputName, suggestionToLowerCase } : object | string) {
-
   const [isLoading, setIsLoading] = useState(true);
   const [isItDisplayCountry, setIsItDisplayCountry] = useState(true);
   const [countryInfo, setCountryInfo] = useState(null);
   const [isCoat, setIsCoat] = useState(0);
-  // const clickSuggestion = suggestionToLowerCase.toString().toLowerCase();
 
-  
+  // PROBLEM IS THAT IT LITERALLY SEARCHES FOR WHATEVER INPUT IS PUT  (IF SEARCH KO INSTEAD OF KOSOVO, IT'LL PASS ON KO AS THE ENDPOINT)
+  // const clickSuggestion = suggestionToLowerCase.toString().toLowerCase();
 
   const apiKey = import.meta.env.VITE_API_SECRET
   const countryMap = `https://www.google.com/maps/embed/v1/place?${apiKey}q=${countryInputName}`;
@@ -24,7 +23,7 @@ function DisplayCountry({ goBack, countryInputName, suggestionToLowerCase } : ob
   const getCountryInfo = async () => {
     try {
 
-      const response = await fetch(`https://restcountries.com/v3.1/name/${suggestionToLowerCase || countryInputName}?fullText=true`);
+      const response = await fetch(`https://restcountries.com/v3.1/name/${countryInputName}?fullText=true`);
       
       if (response.status === 404) {
          alert('Country not found!');
@@ -107,7 +106,8 @@ function DisplayCountry({ goBack, countryInputName, suggestionToLowerCase } : ob
                 <li><b>Official languages: </b><span className='info-italic'>{ getOfficialLanguages(countryInfo) }</span></li>
                 <li><b>Population: </b><span className='info-italic'>{ countryInfo.population }</span></li>
                 <li><b>Demonym: </b><span className='info-italic'>{ Object.values(countryInfo.demonyms)[0].m }</span></li>
-                <li><b>Currency:</b> <span className='info-italic'>{ Object.values(countryInfo.currencies)[0].name }</span></li>
+                {/* FIX - VALIDATE CURRENCY (BOUVET ISLAND) */}
+                {/* <li><b>Currency:</b> <span className='info-italic'>{ Object.values(countryInfo.currencies)[0].name }</span></li> */}
 
                 {/* { currencies  
                   ?

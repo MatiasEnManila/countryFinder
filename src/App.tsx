@@ -11,6 +11,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   
   // USEREF PERSIST BETWEEN RENDERS, IT'LL BE AVAILABLE IN THE NEXT RENDER (AND CHANGES IN YOUR USEREF WONT TRIGGER A NEW RENDER, UNLIKE USESTATE)
+  // KOS IS ON SEARCHEDCOUNTRY;
   let searchedCountry = useRef('');
   const [countryName, setCountryName] = useState('');
   const [frontFace, setFrontFace] = useState(true);
@@ -23,7 +24,7 @@ function App() {
   const handleInputChange = (event: string) => {
     searchedCountry.current = event.target.value.toLowerCase();
     setCountryName(searchedCountry.current);
-  
+
     if (searchedCountry.current.length > 0) {
       const filteredSearch = allCountriesNames.filter(item => 
         item.toLowerCase().includes(searchedCountry.current.toLowerCase())
@@ -49,8 +50,7 @@ function App() {
 
 
   // Clicking
-  const getDisplayCountry = (suggestion) => {
-    setSuggestionToLowerCase(suggestion);
+  const getDisplayCountry = () => {
     if (countryName === '') {
       return alert('Please insert a country!');
     }
@@ -63,7 +63,7 @@ function App() {
       if (countryName === '') {
         return alert('Please, insert a country!');
       } 
-      getDisplayCountry(suggestion);
+      getDisplayCountry();
       event.preventDefault();
       setFrontFace(!frontFace);
     }
@@ -74,6 +74,15 @@ function App() {
    setFrontFace(!frontFace);
    setCountryName('');
    setSuggestion([]);
+  }
+
+
+  const clickOnSuggestion = (suggestion) => {
+    setSuggestionToLowerCase(suggestion);
+    if (suggestion) {
+      setCountryName(suggestion); 
+      setFrontFace(!frontFace);
+     }
   }
 
 
@@ -95,7 +104,7 @@ function App() {
               {suggestion.length > 0 && (
                 <ul>
                   {suggestion.map((suggestion, index) => (
-                    <li className='suggestions'  key={suggestion} onClick={  () => getDisplayCountry(suggestion) }>{suggestion}</li>
+                    <li className='suggestions'  key={suggestion} onClick={  () => clickOnSuggestion(suggestion) }>{suggestion}</li>
                   ))} 
                 </ul>
               )}
