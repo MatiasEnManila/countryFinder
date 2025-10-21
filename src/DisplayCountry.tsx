@@ -7,12 +7,14 @@ import Map from './Map';
 
 // IF STAT === '' - DONT SHOW STAT
 
-function DisplayCountry({ goBack, countryInputName } : object | string) {
+function DisplayCountry({ goBack, countryInputName, suggestionToLowerCase } : object | string) {
 
   const [isLoading, setIsLoading] = useState(true);
   const [isItDisplayCountry, setIsItDisplayCountry] = useState(true);
   const [countryInfo, setCountryInfo] = useState(null);
-  const [isCoat, setIsCoat] = useState(true);
+  const [isCoat, setIsCoat] = useState(0);
+  // const clickSuggestion = suggestionToLowerCase.toString().toLowerCase();
+
   
 
   const apiKey = import.meta.env.VITE_API_SECRET
@@ -22,7 +24,7 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
   const getCountryInfo = async () => {
     try {
 
-      const response = await fetch(`https://restcountries.com/v3.1/name/${countryInputName}?fullText=true`);
+      const response = await fetch(`https://restcountries.com/v3.1/name/${suggestionToLowerCase || countryInputName}?fullText=true`);
       
       if (response.status === 404) {
          alert('Country not found!');
@@ -76,7 +78,6 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
     return officialLanguages
   }
 
-  // console.log(countryInfo);
 
 
   if (isItDisplayCountry) {
@@ -107,6 +108,14 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
                 <li><b>Population: </b><span className='info-italic'>{ countryInfo.population }</span></li>
                 <li><b>Demonym: </b><span className='info-italic'>{ Object.values(countryInfo.demonyms)[0].m }</span></li>
                 <li><b>Currency:</b> <span className='info-italic'>{ Object.values(countryInfo.currencies)[0].name }</span></li>
+
+                {/* { currencies  
+                  ?
+                  <li><b>Currency:</b> <span className='info-italic'>{ Object.values(countryInfo.currencies)[0].name }</span></li>
+                  :
+                  <li><b>Currency:</b>No currency</li>
+                } */}
+
                 <li><b>Timezone: </b><span className='info-italic'>{ countryInfo.timezones[0] }</span></li>
                 <li><b>Subregion: </b><span className='info-italic'>{ countryInfo.subregion || countryInfo.subRegion }</span></li>
               </div>

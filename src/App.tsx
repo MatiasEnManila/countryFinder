@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';  
+import { use, useRef, useState } from 'react';  
 import DisplayCountry from './DisplayCountry';
 import worldIcon from './pictures/hello-world2.png'
 import './App.css'
@@ -16,8 +16,10 @@ function App() {
   const [frontFace, setFrontFace] = useState(true);
   const [allCountriesNames, setAllCountriesNames] = useState([]);
   const [suggestion, setSuggestion] = useState([]);
+  // CHANGE NAME
+  const [suggestionToLowerCase, setSuggestionToLowerCase] = useState('');
 
-  
+
   const handleInputChange = (event: string) => {
     searchedCountry.current = event.target.value.toLowerCase();
     setCountryName(searchedCountry.current);
@@ -32,11 +34,12 @@ function App() {
     }
   }
   
+
   const getAllCountriesNames = async () => {
     try {
       const response = await fetch(`https://restcountries.com/v3.1/all?fields=name`);
       const data = await response.json();      
-      return setAllCountriesNames(data.map(country => country.name.common).sort());	
+      setAllCountriesNames(data.map(country => country.name.common).sort());	
     } catch (err) {
       console.error(err);
     }
@@ -46,7 +49,8 @@ function App() {
 
 
   // Clicking
-  const getDisplayCountry = () => {
+  const getDisplayCountry = (suggestion) => {
+    setSuggestionToLowerCase(suggestion);
     if (countryName === '') {
       return alert('Please insert a country!');
     }
@@ -59,7 +63,7 @@ function App() {
       if (countryName === '') {
         return alert('Please, insert a country!');
       } 
-      getDisplayCountry();
+      getDisplayCountry(suggestion);
       event.preventDefault();
       setFrontFace(!frontFace);
     }
@@ -71,7 +75,7 @@ function App() {
    setCountryName('');
    setSuggestion([]);
   }
-  
+
 
 
   if (frontFace) {
@@ -91,7 +95,7 @@ function App() {
               {suggestion.length > 0 && (
                 <ul>
                   {suggestion.map((suggestion, index) => (
-                    <li className='suggestions'  key={suggestion}>{suggestion}</li>
+                    <li className='suggestions'  key={suggestion} onClick={  () => getDisplayCountry(suggestion) }>{suggestion}</li>
                   ))} 
                 </ul>
               )}
@@ -109,6 +113,7 @@ function App() {
         < DisplayCountry 
             goBack={goBack}
             countryInputName={countryName}
+            suggestionToLowerCase={suggestionToLowerCase}
         />
       )
     }
