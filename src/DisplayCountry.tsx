@@ -1,20 +1,24 @@
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BounceLoader } from "react-spinners"; 
 import './DisplayCountry.css';
 import Map from './Map';
 
 
-
-// IF STAT === '' - DONT SHOW STAT
-
-function DisplayCountry({ goBack, countryInputName, suggestionToLowerCase } : object | string) {
+function DisplayCountry({ goBack, countryInputName } : object | string) {
   const [isLoading, setIsLoading] = useState(true);
   const [isItDisplayCountry, setIsItDisplayCountry] = useState(true);
   const [countryInfo, setCountryInfo] = useState(null);
-  const [isCoat, setIsCoat] = useState(0);
 
-  // PROBLEM IS THAT IT LITERALLY SEARCHES FOR WHATEVER INPUT IS PUT  (IF SEARCH KO INSTEAD OF KOSOVO, IT'LL PASS ON KO AS THE ENDPOINT)
-  // const clickSuggestion = suggestionToLowerCase.toString().toLowerCase();
+  // Validating properties
+  const [isCoat, setIsCoat] = useState(0);
+  const [isCapital, setIsCapital] = useState(0);
+  const [isPopulation, setIsPopulation] = useState(0);
+  const [isDemonym, setIsDemonym] = useState(0);
+  const [isCurrency, setIsCurrency] = useState(0);
+  const [isLanguages, setIsLanguages] = useState(0);
+  const [isSubregion, setIsSubregion] = useState(0);
+
+
 
   const apiKey = import.meta.env.VITE_API_SECRET
   const countryMap = `https://www.google.com/maps/embed/v1/place?${apiKey}q=${countryInputName}`;
@@ -33,12 +37,25 @@ function DisplayCountry({ goBack, countryInputName, suggestionToLowerCase } : ob
       const data = await response.json();
       setCountryInfo(data[0]);
       setIsCoat(Object.values(data[0].coatOfArms).length);
+
+      setIsCapital(Object.values(data[0].capital).length);
+      setIsPopulation(data[0].population);
+      setIsDemonym(Object.values(data[0].demonyms).length);
+      setIsCurrency(Object.values(data[0].currencies).length);
+      setIsLanguages(Object.values(data[0].languages).length);
+
+      if (data[0].subRegion) {
+        setIsSubregion(data[0].subRegion.length);
+      } else {
+        setIsSubregion(data[0].subregion.length);
+      }
+
     } catch (err) {
         console.error("Error! " + err);
       }    
 }
 
-
+//  LET TEST = OBJECT.VALUES(DATA[0].CAPITAL).LENGTH)
 
 // it only runs once -  when the component mounts, and cleans up when it unmounts.
   useEffect(() => {
@@ -73,19 +90,18 @@ function DisplayCountry({ goBack, countryInputName, suggestionToLowerCase } : ob
     // ITERATE THROUGH PROPERTIES BY CHECKING LENGTH OF KEYS
     for (let i = 0; i < Object.keys(countryInfo.languages).length; i++) {
       officialLanguages += " " + Object.values(countryInfo.languages)[i];
-    }
-    return officialLanguages
-  }
-
-
-
-  if (isItDisplayCountry) {
-    return (  
-      <>
+      }
+      return officialLanguages
+      }
+      
+      
+      
+      if (isItDisplayCountry) {
+        return (  
+          <>
         <div className='display-container'>
           { countryInfo && 
             <>
-
               { isCoat > 0 &&
                 <>
                   <div style={{ display:isLoading ? 'block' : 'none' }}>
@@ -101,23 +117,16 @@ function DisplayCountry({ goBack, countryInputName, suggestionToLowerCase } : ob
                 <h1 className='text-props fs-3'><b>{ countryInfo.name.official }</b></h1>
               </div>
           
+
+
               <div className='info-container'>
-                <li><b>Capital city: </b><span className='info-italic'>{ countryInfo.capital }</span></li>
-                <li><b>Official languages: </b><span className='info-italic'>{ getOfficialLanguages(countryInfo) }</span></li>
-                <li><b>Population: </b><span className='info-italic'>{ countryInfo.population }</span></li>
-                <li><b>Demonym: </b><span className='info-italic'>{ Object.values(countryInfo.demonyms)[0].m }</span></li>
-                {/* FIX - VALIDATE CURRENCY (BOUVET ISLAND) */}
-                {/* <li><b>Currency:</b> <span className='info-italic'>{ Object.values(countryInfo.currencies)[0].name }</span></li> */}
-
-                {/* { currencies  
-                  ?
-                  <li><b>Currency:</b> <span className='info-italic'>{ Object.values(countryInfo.currencies)[0].name }</span></li>
-                  :
-                  <li><b>Currency:</b>No currency</li>
-                } */}
-
+                { isCapital > 0 && <li><b>Capital city: </b><span className='info-italic'>{ countryInfo.capital }</span></li> }
+                { isPopulation > 0 && <li><b>Population: </b><span className='info-italic'>{ countryInfo.population }</span></li> }
+                { isDemonym > 0 && <li><b>Demonym: </b><span className='info-italic'>{ Object.values(countryInfo.demonyms)[0].m }</span></li> }
+                { isLanguages > 0 && <li><b>Official languages: </b><span className='info-italic'>{ getOfficialLanguages(countryInfo) }</span></li> }
+                { isCurrency > 0 && <li><b>Currency:</b> <span className='info-italic'>{ Object.values(countryInfo.currencies)[0].name }</span></li> }
                 <li><b>Timezone: </b><span className='info-italic'>{ countryInfo.timezones[0] }</span></li>
-                <li><b>Subregion: </b><span className='info-italic'>{ countryInfo.subregion || countryInfo.subRegion }</span></li>
+                { isSubregion > 0 && <li><b>Subregion: </b><span className='info-italic'>{ countryInfo.subregion || countryInfo.subRegion }</span></li> }
               </div>
             </>
           }

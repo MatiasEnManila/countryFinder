@@ -11,14 +11,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   
   // USEREF PERSIST BETWEEN RENDERS, IT'LL BE AVAILABLE IN THE NEXT RENDER (AND CHANGES IN YOUR USEREF WONT TRIGGER A NEW RENDER, UNLIKE USESTATE)
-  // KOS IS ON SEARCHEDCOUNTRY;
   let searchedCountry = useRef('');
+  
   const [countryName, setCountryName] = useState('');
   const [frontFace, setFrontFace] = useState(true);
   const [allCountriesNames, setAllCountriesNames] = useState([]);
   const [suggestion, setSuggestion] = useState([]);
-  // CHANGE NAME
-  const [suggestionToLowerCase, setSuggestionToLowerCase] = useState('');
+  const [clickedSuggestion, setClickedSuggestion] = useState('');
 
 
   const handleInputChange = (event: string) => {
@@ -78,7 +77,7 @@ function App() {
 
 
   const clickOnSuggestion = (suggestion) => {
-    setSuggestionToLowerCase(suggestion);
+    setClickedSuggestion(suggestion);
     if (suggestion) {
       setCountryName(suggestion); 
       setFrontFace(!frontFace);
@@ -122,7 +121,6 @@ function App() {
         < DisplayCountry 
             goBack={goBack}
             countryInputName={countryName}
-            suggestionToLowerCase={suggestionToLowerCase}
         />
       )
     }
