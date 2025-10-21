@@ -36,7 +36,6 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
       const data = await response.json();
       setCountryInfo(data[0]);
       setIsCoat(Object.values(data[0].coatOfArms).length);
-
       setIsCapital(Object.values(data[0].capital).length);
       setIsPopulation(data[0].population);
       setIsDemonym(Object.values(data[0].demonyms).length);
@@ -55,7 +54,7 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
   }
 
 
-  // it only runs once -  when the component mounts, and cleans up when it unmounts.
+  // it only runs once, when the component mounts, and cleans up when it unmounts.
   useEffect(() => {
     getCountryInfo();
 
@@ -79,7 +78,6 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
     setIsItDisplayCountry(!isItDisplayCountry);
   }
 
-  console.log(countryInfo);
 
   const getOfficialLanguages = (countryInfo) => {
     let officialLanguages = '';
@@ -90,7 +88,7 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
       return officialLanguages
   }
       
-      
+
       
   if (isItDisplayCountry) {
     return (  
@@ -118,8 +116,9 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
                 { isPopulation > 0 && <li><b>Population: </b><span className='info-italic'>{ countryInfo.population }</span></li> }
                 { isDemonym > 0 && <li><b>Demonym: </b><span className='info-italic'>{ Object.values(countryInfo.demonyms)[0].m }</span></li> }
                 { isLanguages > 0 && <li><b>Official languages: </b><span className='info-italic'>{ getOfficialLanguages(countryInfo) }</span></li> }
-                { isCurrency > 0 && <li><b>Currency:</b> <span className='info-italic'>{ Object.values(countryInfo.currencies)[0].name }</span></li> }
+                { isCurrency > 0 && <li><b>Currency: </b><span className='info-italic'>{ Object.values(countryInfo.currencies)[0].name }</span></li> }
                 <li><b>Timezone: </b><span className='info-italic'>{ countryInfo.timezones[0] }</span></li>
+                <li><b>Region: </b><span className='info-italic'>{ countryInfo.region }</span> </li>
                 { isSubregion > 0 && <li><b>Subregion: </b><span className='info-italic'>{ countryInfo.subregion || countryInfo.subRegion }</span></li> }
               </div>
             </>

@@ -6,27 +6,23 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
-// Add click on suggestion*
-
 function App() {
   
-  // USEREF PERSIST BETWEEN RENDERS, IT'LL BE AVAILABLE IN THE NEXT RENDER (AND CHANGES IN YOUR USEREF WONT TRIGGER A NEW RENDER, UNLIKE USESTATE)
+  // IT PERSIST BETWEEN RENDERS, (CHANGES IN YOUR USEREF WONT TRIGGER A NEW RENDER, UNLIKE USESTATE)
   let searchedCountry = useRef('');
   
   const [countryName, setCountryName] = useState('');
   const [frontFace, setFrontFace] = useState(true);
   const [allCountriesNames, setAllCountriesNames] = useState([]);
   const [suggestion, setSuggestion] = useState([]);
-  const [clickedSuggestion, setClickedSuggestion] = useState('');
-
 
   const handleInputChange = (event: string) => {
     searchedCountry.current = event.target.value.toLowerCase();
     setCountryName(searchedCountry.current);
 
     if (searchedCountry.current.length > 0) {
-      const filteredSearch = allCountriesNames.filter(item => 
-        item.toLowerCase().includes(searchedCountry.current.toLowerCase())
+      const filteredSearch = allCountriesNames.filter(country => 
+        country.toLowerCase().includes(searchedCountry.current.toLowerCase())
       );
       setSuggestion(filteredSearch);
     } else {
@@ -48,7 +44,6 @@ function App() {
   if (allCountriesNames.length === 0) getAllCountriesNames(); 
 
 
-  // Clicking
   const getDisplayCountry = () => {
     if (countryName === '') {
       return alert('Please insert a country!');
@@ -56,7 +51,7 @@ function App() {
     setFrontFace(!frontFace);
   }
 
-  // Enter key - REVISE
+
   const pressEnterKey = (event) => {
     if (event.key === 'Enter') {
       if (countryName === '') {
@@ -77,7 +72,6 @@ function App() {
 
 
   const clickOnSuggestion = (suggestion) => {
-    setClickedSuggestion(suggestion);
     if (suggestion) {
       setCountryName(suggestion); 
       setFrontFace(!frontFace);
@@ -102,20 +96,19 @@ function App() {
               />
               {suggestion.length > 0 && (
                 <ul>
-                  {suggestion.map((suggestion, index) => (
+                  {suggestion.map((suggestion) => (
                     <li className='suggestions'  key={suggestion} onClick={  () => clickOnSuggestion(suggestion) }>{suggestion}</li>
                   ))} 
                 </ul>
               )}
-              <button type="button" className='btn btn-dark search-button' onClick={ getDisplayCountry } >Search</button>
+              <button type="button" className='btn btn-dark search-button' onClick={ getDisplayCountry }>Search</button>
             </div>
           </div>
+
           <img className='world-picture' src={ worldIcon } />
-         
         </div>
       </>
     );
-
     } else {
       return (
         < DisplayCountry 
