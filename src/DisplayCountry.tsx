@@ -55,7 +55,7 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
   }
 
 
-// it only runs once -  when the component mounts, and cleans up when it unmounts.
+  // it only runs once -  when the component mounts, and cleans up when it unmounts.
   useEffect(() => {
     getCountryInfo();
 
@@ -79,7 +79,7 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
     setIsItDisplayCountry(!isItDisplayCountry);
   }
 
-  
+  console.log(countryInfo);
 
   const getOfficialLanguages = (countryInfo) => {
     let officialLanguages = '';
@@ -92,9 +92,9 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
       
       
       
-    if (isItDisplayCountry) {
-        return (  
-          <>
+  if (isItDisplayCountry) {
+    return (  
+      <>
         <div className='display-container'>
           { countryInfo && 
             <>
@@ -112,9 +112,7 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
               <div className='country-name'>
                 <h1 className='text-props fs-3'><b>{ countryInfo.name.official }</b></h1>
               </div>
-          
-
-
+      
               <div className='info-container'>
                 { isCapital > 0 && <li><b>Capital city: </b><span className='info-italic'>{ countryInfo.capital }</span></li> }
                 { isPopulation > 0 && <li><b>Population: </b><span className='info-italic'>{ countryInfo.population }</span></li> }
