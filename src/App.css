@@ -2,7 +2,8 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 7.5px;
-  border-radius: 6px;
+  border-radius: 30px;
+  border: 3px solid black;
   text-align: center;
   background-color: rgb(20, 20, 20);
 }
@@ -45,22 +46,30 @@
 
 
 
+
+/* FROM HERE ON */
+
+
+
+
+
 .frontface-div {
   display: flex;
   flex-direction: column;
+  height: 670px;
+  width: 435px;
   background-color: #006946;
-  height: 600px;
-  width: 425px;
+  border-radius: 25px;
 }
 
 .title {
-  padding-top: 30px;
-  margin-bottom: 45px;
+  padding-top: 50px;
+  margin-bottom: 40px;
 }
 
 .input {
   height: 35px;
-  width: 330px;
+  width: 285px;
   border-radius: 10px;
   background-color: #f5e2dd;
   margin-right: 3px;
@@ -73,14 +82,13 @@ input::placeholder {
 }
 
 .search-button {
-  width: 330px;
+  width: 285px;
   height: 40px;
   margin-top: 5px;
 }
 
 .world-picture {
   width: 95%;
-  margin-left: 5px
 }
 
 .loading-picture {
@@ -102,4 +110,48 @@ input::placeholder {
 
 .suggestions {
   list-style-type: none;
+}
+
+
+
+.bbh-sans-bogle-regular {
+  font-family: "BBH Sans Bogle", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.rubik-search {
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  /* font-weight: bold; */
+  font-style: normal;
+}
+
+
+
+/* RESPONSIVE */
+@media (max-width: 490px) {
+  .frontface-div {  
+    width: 390px;
+  }
+}
+
+@media (max-width: 440px) {
+  .frontface-div {  
+    width: 360px;
+  }
+}
+
+@media (max-width: 390px) {
+  .frontface-div {  
+    height: 630px;
+    width: 330px;
+  }
+}
+
+@media (max-width: 360px) {
+  .frontface-div {  
+    height: 630px;
+    width: 300px;
+  }
 }

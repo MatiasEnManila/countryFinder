@@ -1,4 +1,5 @@
-import { use, useRef, useState } from 'react';  
+import { use, useRef, useState } from 'react';
+import Select from 'react-select'  
 import DisplayCountry from './DisplayCountry';
 import worldIcon from './pictures/hello-world2.png'
 import './App.css'
@@ -85,15 +86,21 @@ function App() {
       <>
         <div className='frontface-div'>
           <div>
-            <h1 className='title fw-medium text-center'>Find a country!</h1>
-            <div>
+            <h1 className='title fw-medium text-center bbh-sans-bogle-regular'>Find a country!</h1>
               <input
-                className='input'
+                className='input rubik-search'
                 type="text"
                 placeholder="Search country"
                 onChange={ handleInputChange }
                 onKeyDown={ pressEnterKey }
               />
+              {/* <Select 
+                className='input rubik-search'
+                options={allCountriesNames}
+                placeholder='Search Country'
+                onChange={ handleInputChange }
+                onKeyDown={ pressEnterKey }
+              /> */}
               {suggestion.length > 0 && (
                 <ul>
                   {suggestion.map((suggestion) => (
@@ -102,7 +109,6 @@ function App() {
                 </ul>
               )}
               <button type="button" className='btn btn-dark search-button' onClick={ getDisplayCountry }>Search</button>
-            </div>
           </div>
 
           <img className='world-picture' src={ worldIcon } />
