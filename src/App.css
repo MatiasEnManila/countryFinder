@@ -50,9 +50,6 @@
 /* FROM HERE ON */
 
 
-
-
-
 .frontface-div {
   display: flex;
   flex-direction: column;
@@ -60,6 +57,13 @@
   width: 435px;
   background-color: #006946;
   border-radius: 25px;
+}
+
+
+.button-select {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
@@ -76,10 +80,6 @@
   color: black;
 }
 
-input::placeholder {
-  color: black;
-  text-align: center;
-}
 
 .search-button {
   width: 285px;
@@ -87,14 +87,17 @@ input::placeholder {
   margin-top: 5px;
 }
 
+
 .world-picture {
   width: 95%;
 }
+
 
 .loading-picture {
   width: 45%;
   margin-bottom: 15px;
 }
+
 
 .loading-text {
   margin-bottom: -1rem;
@@ -155,3 +158,14 @@ input::placeholder {
     width: 300px;
   }
 }
+
+
+
+/* 
+  SELECT BUTTON 
+
+  margin-left: 75px;
+  width: 99%;
+
+
+*/

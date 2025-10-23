@@ -88,6 +88,7 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
       return officialLanguages
   }
       
+ 
 
       
   if (isItDisplayCountry) {
@@ -104,7 +105,7 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
                     <div style={{ display:isLoading ? 'none' : 'block' }}>
                       <img className='svg' onLoad={() => isLoading && setIsLoading(false)} src={ countryInfo.coatOfArms.png } />
                     </div>
-                    <h1 className='rubik-font country-title'><b style={{lineHeight: "2.7", fontSize: 'large'}}>{ countryInfo.name.official }</b></h1>
+                    <h1 className='rubik-font country-title'><b style={{fontSize: 'x-large'}}>{ countryInfo.name.official }</b></h1>
                     
                     <div className='info-container'>
                       { isCapital > 0 && <li><b>Capital city: </b><span className='info-italic'>{ countryInfo.capital }</span></li> }

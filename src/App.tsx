@@ -1,10 +1,17 @@
-import { use, useRef, useState } from 'react';
-import Select from 'react-select'  
+import { useRef, useState } from 'react';
+import Select from 'react-select';
 import DisplayCountry from './DisplayCountry';
 import worldIcon from './pictures/hello-world2.png'
 import './App.css'
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+
+// TODO
+// NO COAT OPTION - STYLING
+// CLEAN COMMENTS
+//  
+// 
 
 
 function App() {
@@ -15,34 +22,53 @@ function App() {
   const [countryName, setCountryName] = useState('');
   const [frontFace, setFrontFace] = useState(true);
   const [allCountriesNames, setAllCountriesNames] = useState([]);
-  const [suggestion, setSuggestion] = useState([]);
+  // const [suggestion, setSuggestion] = useState([]);
 
-  const handleInputChange = (event: string) => {
-    searchedCountry.current = event.target.value.toLowerCase();
-    setCountryName(searchedCountry.current);
 
-    if (searchedCountry.current.length > 0) {
-      const filteredSearch = allCountriesNames.filter(country => 
-        country.toLowerCase().includes(searchedCountry.current.toLowerCase())
-      );
-      setSuggestion(filteredSearch);
-    } else {
-      setSuggestion([]);
-    }
-  }
+  // const handleInputChange = (event) => {
+  //   searchedCountry.current = event.target.value.toLowerCase();
+  //   setCountryName(searchedCountry.current);
+
+  //   if (searchedCountry.current.length > 0) {
+  //     const filteredSearch = allCountriesNames.filter(country => 
+  //       country.toLowerCase().includes(searchedCountry.current.toLowerCase())
+  //     );
+  //     setSuggestion(filteredSearch);
+  //   } else {
+  //     setSuggestion([]);
+  //   }
+  // }
   
-
+  // const getAllCountriesNames = async () => {
+  //   try {
+  //     const response = await fetch(`https://restcountries.com/v3.1/all?fields=name`);
+  //     const data = await response.json();      
+  //     setAllCountriesNames(data.map(country => country.name.common).sort());	
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // }  
+  
+  
   const getAllCountriesNames = async () => {
     try {
       const response = await fetch(`https://restcountries.com/v3.1/all?fields=name`);
       const data = await response.json();      
-      setAllCountriesNames(data.map(country => country.name.common).sort());	
+      let selectCountries = []; 
+    
+      for (let i = 0; i < data.length; i++) {
+        selectCountries.push({"value": i, "label": data[i].name.common});
+      }
+
+      setAllCountriesNames(selectCountries);
+      
     } catch (err) {
       console.error(err);
     }
   }
-
+  
   if (allCountriesNames.length === 0) getAllCountriesNames(); 
+
 
 
   const getDisplayCountry = () => {
@@ -53,16 +79,16 @@ function App() {
   }
 
 
-  const pressEnterKey = (event) => {
-    if (event.key === 'Enter') {
-      if (countryName === '') {
-        return alert('Please, insert a country!');
-      } 
-      getDisplayCountry();
-      event.preventDefault();
-      setFrontFace(!frontFace);
-    }
-  }
+  // const pressEnterKey = (event) => {
+  //   if (event.key === 'Enter') {
+  //     if (countryName === '') {
+  //       return alert('Please, insert a country!');
+  //     } 
+  //     getDisplayCountry();
+  //     event.preventDefault();
+  //     setFrontFace(!frontFace);
+  //   }
+  // }
 
 
   const goBack = () => {
@@ -72,13 +98,22 @@ function App() {
   }
 
 
-  const clickOnSuggestion = (suggestion) => {
+  const handleSuggestion = (suggestion) => { 
     if (suggestion) {
-      setCountryName(suggestion); 
+      setCountryName(suggestion.label); 
       setFrontFace(!frontFace);
      }
   }
 
+
+  const customStyles = {
+  control: (base, state) => ({
+    ...base,
+    height: '35px',
+    minHeight: '35px',
+    width: '280px'
+  })
+}
 
 
   if (frontFace) {
@@ -87,27 +122,29 @@ function App() {
         <div className='frontface-div'>
           <div>
             <h1 className='title fw-medium text-center bbh-sans-bogle-regular'>Find a country!</h1>
-              <input
+              {/* <input
                 className='input rubik-search'
                 type="text"
                 placeholder="Search country"
                 onChange={ handleInputChange }
                 onKeyDown={ pressEnterKey }
-              />
-              {/* <Select 
-                className='input rubik-search'
-                options={allCountriesNames}
-                placeholder='Search Country'
-                onChange={ handleInputChange }
-                onKeyDown={ pressEnterKey }
               /> */}
-              {suggestion.length > 0 && (
+              <div style={{ marginLeft: '77px', width: '280px' }}>
+                
+                <Select 
+                  options={ allCountriesNames }
+                  onChange={ handleSuggestion } 
+                  placeholder='Search Country'
+                  styles={ customStyles }
+                  />
+              </div>
+              {/* {suggestion.length > 0 && (
                 <ul>
                   {suggestion.map((suggestion) => (
-                    <li className='suggestions'  key={suggestion} onClick={  () => clickOnSuggestion(suggestion) }>{suggestion}</li>
+                    <li className='suggestions' key={suggestion} onClick={  () => clickOnSuggestion(suggestion) }>{suggestion}</li>
                   ))} 
                 </ul>
-              )}
+              )} */}
               <button type="button" className='btn btn-dark search-button' onClick={ getDisplayCountry }>Search</button>
           </div>
 
