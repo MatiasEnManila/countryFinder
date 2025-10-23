@@ -1,3 +1,7 @@
+body {
+  background-color: green ;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -71,13 +75,10 @@
   margin-bottom: 40px;
 }
 
-.input {
-  height: 35px;
-  width: 285px;
-  border-radius: 10px;
-  background-color: #f5e2dd;
-  margin-right: 3px;
-  color: black;
+
+.select-input {
+  margin-left: 77px;
+  width: 280px;
 }
 
 
@@ -92,16 +93,16 @@
   width: 95%;
 }
 
-
+/* 
 .loading-picture {
   width: 45%;
   margin-bottom: 15px;
-}
+} */
 
 
-.loading-text {
+/* .loading-text {
   margin-bottom: -1rem;
-}
+} */
 
 
 .loading-icon {
@@ -126,7 +127,6 @@
 .rubik-search {
   font-family: "Rubik", sans-serif;
   font-optical-sizing: auto;
-  /* font-weight: bold; */
   font-style: normal;
 }
 
@@ -137,11 +137,19 @@
   .frontface-div {  
     width: 390px;
   }
+
+  .select-input {
+    margin-left: 57px;
+  }
 }
 
 @media (max-width: 440px) {
   .frontface-div {  
     width: 360px;
+  }
+
+  .select-input {
+    margin-left: 41px;
   }
 }
 
@@ -150,6 +158,11 @@
     height: 630px;
     width: 330px;
   }
+
+   .select-input {
+    margin-left: 25px; 
+  }
+
 }
 
 @media (max-width: 360px) {
@@ -157,6 +170,8 @@
     height: 630px;
     width: 300px;
   }
+
+ 
 }
 
 

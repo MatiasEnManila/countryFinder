@@ -4,6 +4,11 @@ import './DisplayCountry.css';
 import Map from './Map';
 
 
+// TODO
+// CHANGE COUNTRY NAME FONT TO A BIGER ONE? 
+// bg color
+// ALL RESPONSIVE 
+
 function DisplayCountry({ goBack, countryInputName } : object | string) {
   const [isLoading, setIsLoading] = useState(true);
   const [isItDisplayCountry, setIsItDisplayCountry] = useState(true);
@@ -95,49 +100,56 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
     return (  
       <>
         <div className='display-container'>
-          { countryInfo && 
-            <>
-              { isCoat > 0 ?
-                  <>
-                    <div style={{ display:isLoading ? 'block' : 'none' }}>
-                      <BounceLoader color={"#123443"} size={150} aria-label="Loading Spinner" data-testid="loader"/>
-                    </div>
-                    <div style={{ display:isLoading ? 'none' : 'block' }}>
-                      <img className='svg' onLoad={() => isLoading && setIsLoading(false)} src={ countryInfo.coatOfArms.png } />
-                    </div>
-                    <h1 className='rubik-font country-title'><b style={{fontSize: 'x-large'}}>{ countryInfo.name.official }</b></h1>
-                    
-                    <div className='info-container'>
-                      { isCapital > 0 && <li><b>Capital city: </b><span className='info-italic'>{ countryInfo.capital }</span></li> }
-                      { isPopulation > 0 && <li><b>Population: </b><span className='info-italic'>{ countryInfo.population }</span></li> }
-                      { isDemonym > 0 && <li><b>Demonym: </b><span className='info-italic'>{ Object.values(countryInfo.demonyms)[0].m }</span></li> }
-                      { isLanguages > 0 && <li><b>Official languages: </b><span className='info-italic'>{ getOfficialLanguages(countryInfo) }</span></li> }
-                      { isCurrency > 0 && <li><b>Currency: </b><span className='info-italic'>{ Object.values(countryInfo.currencies)[0].name }</span></li> }
-                      <li><b>Timezone: </b><span className='info-italic'>{ countryInfo.timezones[0] }</span></li>
-                      <li><b>Region: </b><span className='info-italic'>{ countryInfo.region }</span></li>
-                      { isSubregion > 0 && <li><b>Subregion: </b><span className='info-italic'>{ countryInfo.subregion || countryInfo.subRegion }</span></li> }
-                    </div>
-                  </>
-                :
-                  <>
-                    <h1 className='no-coat'><b>{ countryInfo.name.official }</b></h1>
-                     <div className='info-container'>
-                      { isCapital > 0 && <li><b>Capital city: </b><span className='info-italic'>{ countryInfo.capital }</span></li> }
-                      { isPopulation > 0 && <li><b>Population: </b><span className='info-italic'>{ countryInfo.population }</span></li> }
-                      { isDemonym > 0 && <li><b>Demonym: </b><span className='info-italic'>{ Object.values(countryInfo.demonyms)[0].m }</span></li> }
-                      { isLanguages > 0 && <li><b>Official languages: </b><span className='info-italic'>{ getOfficialLanguages(countryInfo) }</span></li> }
-                      { isCurrency > 0 && <li><b>Currency: </b><span className='info-italic'>{ Object.values(countryInfo.currencies)[0].name }</span></li> }
-                      <li><b>Timezone: </b><span className='info-italic'>{ countryInfo.timezones[0] }</span></li>
-                      <li><b>Region: </b><span className='info-italic'>{ countryInfo.region }</span></li>
-                      { isSubregion > 0 && <li><b>Subregion: </b><span className='info-italic'>{ countryInfo.subregion || countryInfo.subRegion }</span></li> }
-                    </div>
-                  </>
-              }
-            </>
-          }
-          <div className='goback-btn'>
-            <button className='btn btn-dark' onClick={ goBack }>Go back</button>
-            <button className='btn btn-primary see-map' onClick={ seeMap }>See map</button>
+          <div style={{ display: 'flex', flexDirection: 'column', marginTop: '5%', alignItems: 'center' }}>
+            { countryInfo && 
+              <>
+                { isCoat > 0 ?
+                    <>
+                      {/* AFTER LOADING REPLACE POSITION OF BOUNCELOADER WITH COATOFARMS */}
+                        <BounceLoader 
+                          color={"#123443"} 
+                          size={150} 
+                          aria-label="Loading Spinner" 
+                          cssOverride={{display: 'flex' , justifyContent: 'center', alignItems: 'center'}}
+                          loading={isLoading}
+                        />
+                      <div style={{ display:isLoading ? 'none' : 'block' }}>
+                        <img className='svg' onLoad={() => isLoading && setIsLoading(false)} src={ countryInfo.coatOfArms.png } />
+                      </div>
+                      <h1 className='country-title rubik-title'><b style={{fontSize: 'smaller', paddingTop: '10px'}}>{ countryInfo.name.official }</b></h1>
+                      
+                      <div className='info-container'>
+                        { isCapital > 0 && <li className='stats-placement'><b>Capital city: </b><span className='info-italic'>{ countryInfo.capital }</span></li> }
+                        { isPopulation > 0 && <li className='stats-placement'><b>Population: </b><span className='info-italic'>{ countryInfo.population }</span></li> }
+                        { isDemonym > 0 && <li className='stats-placement'><b>Demonym: </b><span className='info-italic'>{ Object.values(countryInfo.demonyms)[0].m }</span></li> }
+                        { isLanguages > 0 && <li className='stats-placement'><b>Official languages: </b><span className='info-italic'>{ getOfficialLanguages(countryInfo) }</span></li> }
+                        { isCurrency > 0 && <li className='stats-placement'><b>Currency: </b><span className='info-italic'>{ Object.values(countryInfo.currencies)[0].name }</span></li> }
+                        <li className='stats-placement'><b>Timezone: </b><span className='info-italic'>{ countryInfo.timezones[0] }</span></li>
+                        <li className='stats-placement'><b>Region: </b><span className='info-italic'>{ countryInfo.region }</span></li>
+                        { isSubregion > 0 && <li className='stats-placement'><b>Subregion: </b><span className='info-italic'>{ countryInfo.subregion || countryInfo.subRegion }</span></li> }
+                      </div>
+                    </>
+                  :
+                    <>
+                      <h1 className='no-coat rubik-title'><b style={{fontSize: 'large'}}>{ countryInfo.name.official }</b></h1>
+                      <div className='info-container' style={{width: '72%'}}>
+                        { isCapital > 0 && <li className='stats-placement'><b>Capital city: </b><span className='info-italic'>{ countryInfo.capital }</span></li> }
+                        { isPopulation > 0 && <li className='stats-placement'><b>Population: </b><span className='info-italic'>{ countryInfo.population }</span></li> }
+                        { isDemonym > 0 && <li className='stats-placement'><b>Demonym: </b><span className='info-italic'>{ Object.values(countryInfo.demonyms)[0].m }</span></li> }
+                        { isLanguages > 0 && <li className='stats-placement'><b>Official languages: </b><span className='info-italic'>{ getOfficialLanguages(countryInfo) }</span></li> }
+                        { isCurrency > 0 && <li className='stats-placement'><b>Currency: </b><span className='info-italic'>{ Object.values(countryInfo.currencies)[0].name }</span></li> }
+                        <li className='stats-placement'><b>Timezone: </b><span className='info-italic'>{ countryInfo.timezones[0] }</span></li>
+                        <li className='stats-placement'><b>Region: </b><span className='info-italic'>{ countryInfo.region }</span></li>
+                        { isSubregion > 0 && <li className='stats-placement'><b>Subregion: </b><span className='info-italic'>{ countryInfo.subregion || countryInfo.subRegion }</span></li> }
+                      </div>
+                    </>
+                }
+              </>
+            }
+            <div className='goback-btn'>
+              <button className='btn btn-dark' onClick={ goBack }>Go back</button>
+              <button className='btn btn-primary see-map' onClick={ seeMap }>See map</button>
+            </div>
           </div>
         </div>
       </>

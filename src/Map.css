@@ -1,9 +1,8 @@
 .map-main-div {
     display: flex;
     flex-direction: column;
-    height: 630px;
-    width: 425px;
-    /* background-color:#F1AD02; */
+    height: 670px;
+    width: 435px;
     border-radius: 35%;
     background-color:  #081F40;
 }
