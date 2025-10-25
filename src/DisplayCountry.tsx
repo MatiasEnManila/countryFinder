@@ -5,7 +5,6 @@ import Map from './Map';
 
 
 // TODO
-// CHANGE COUNTRY NAME FONT TO A BIGER ONE? 
 // bg color
 // ALL RESPONSIVE 
 
@@ -105,17 +104,17 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
               <>
                 { isCoat > 0 ?
                     <>
-                      {/* AFTER LOADING REPLACE POSITION OF BOUNCELOADER WITH COATOFARMS */}
-                        <BounceLoader 
-                          color={"#123443"} 
-                          size={150} 
-                          aria-label="Loading Spinner" 
-                          cssOverride={{display: 'flex' , justifyContent: 'center', alignItems: 'center'}}
-                          loading={isLoading}
-                        />
+                      <BounceLoader 
+                        color={"#123443"} 
+                        size={150} 
+                        aria-label="Loading Spinner" 
+                        cssOverride={{display: 'flex' , justifyContent: 'center', alignItems: 'center'}}
+                        loading={isLoading}
+                      />
                       <div style={{ display:isLoading ? 'none' : 'block' }}>
                         <img className='svg' onLoad={() => isLoading && setIsLoading(false)} src={ countryInfo.coatOfArms.png } />
                       </div>
+                      
                       <h1 className='country-title rubik-title'><b style={{fontSize: 'smaller', paddingTop: '10px'}}>{ countryInfo.name.official }</b></h1>
                       
                       <div className='info-container'>
