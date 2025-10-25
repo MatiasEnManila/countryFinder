@@ -64,7 +64,7 @@
 }
 
 
-.goback-btn {
+.buttons {
     margin-top: 20px;
 }
 
@@ -96,9 +96,63 @@
 /* RESPONSIVE */
 
 @media (min-width: 800px) {
+    .root {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 7.5px;
+        border-radius: 30px;
+        border: 10px solid black;
+        text-align: center;
+        background-color: rgb(0, 0, 0);
+    }
+
+
     .display-container {  
        width: 47rem;
        height: 70rem;
+    }
+
+    .svg {
+        height: 20rem;
+        width: 22rem;
+        margin-top: 3rem;
+    }
+
+    .country-title {
+        height: 6rem;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        border: 8px solid black;
+    }
+
+
+    .info-container {
+        height: 24rem;
+        width: 35rem;
+        margin-left: 1.1rem;
+        margin-bottom: 3rem;
+        border: 8px solid black;
+
+    }
+
+    .stats-placement {
+        text-align: center;
+        font-size: x-large;
+    }
+
+    .buttons {
+        margin-top: -0.5rem;
+        margin-left: 1rem;
+    }
+
+    .go-back-btn {
+        width: 9rem;
+        height: 4rem;
+    }
+
+    .see-map {
+        width: 9rem;
+        height: 4rem;     
     }
 }
 
@@ -116,10 +170,21 @@
 }
 
 
+/* REVISE REVISE */
 @media (min-width: 361px) and (max-width: 390px) {
     .display-container {  
         height: 630px;
         width: 330px;
+    }
+
+    .svg {
+        height: 150px;
+        margin-top: 7%;
+    }
+
+    .info-container {
+        width: 80%;
+        margin-left: 1.5%;
     }
 }
 

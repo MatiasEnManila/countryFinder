@@ -145,8 +145,8 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
                 }
               </>
             }
-            <div className='goback-btn'>
-              <button className='btn btn-dark' onClick={ goBack }>Go back</button>
+            <div className='buttons'>
+              <button className='btn btn-dark go-back-btn' onClick={ goBack }>Go back</button>
               <button className='btn btn-primary see-map' onClick={ seeMap }>See map</button>
             </div>
           </div>

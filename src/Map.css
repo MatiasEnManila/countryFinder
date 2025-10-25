@@ -38,11 +38,32 @@
 }
 
 /* RESPONSIVE */
+ .root {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 7.5px;
+        border-radius: 30px;
+        border: 10px solid black;
+        text-align: center;
+        background-color: rgb(0, 0, 0);
+    }
 
 @media (min-width: 800px) {
     .map-main-div {  
        width: 47rem;
        height: 70rem;
+    }
+
+    .country-flag {
+        width: 15rem;
+        margin-top: 2rem;
+        margin-left: 16.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .backinfo-btn {
+        height: 4rem;
+        width: 14rem;
     }
 }
 

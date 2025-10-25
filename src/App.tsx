@@ -67,7 +67,8 @@ function App() {
     ...base,
     height: '35px',
     minHeight: '35px',
-    width: '280px'
+    width: '280px',
+    flex: 1
   })
 }
 

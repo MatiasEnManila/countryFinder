@@ -93,17 +93,6 @@ body {
   width: 95%;
 }
 
-/* 
-.loading-picture {
-  width: 45%;
-  margin-bottom: 15px;
-} */
-
-
-/* .loading-text {
-  margin-bottom: -1rem;
-} */
-
 
 .loading-icon {
   display: flex;
@@ -138,6 +127,28 @@ body {
     .frontface-div {  
        width: 47rem;
        height: 70rem;
+    }
+
+
+    .title {
+      margin-bottom: 6rem;
+      font-size: xxx-large;
+    }
+
+    .select-input {
+      width: 10rem;
+      margin-left: 15rem;
+    }
+    
+    .search-button {
+      height: 4rem;
+      width: 35rem;
+      margin-top: 1.5rem;
+    }
+
+    .world-picture {
+      width: 50rem;
+      margin-left: -1rem;
     }
 }
 
