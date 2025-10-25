@@ -115,7 +115,7 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
                         <img className='svg' onLoad={() => isLoading && setIsLoading(false)} src={ countryInfo.coatOfArms.png } />
                       </div>
                       
-                      <h1 className='country-title rubik-title'><b style={{fontSize: 'smaller', paddingTop: '10px'}}>{ countryInfo.name.official }</b></h1>
+                      <h1 className='country-title rubik-title'><b className='country-font'>{ countryInfo.name.official }</b></h1>
                       
                       <div className='info-container'>
                         { isCapital > 0 && <li className='stats-placement'><b>Capital city: </b><span className='info-italic'>{ countryInfo.capital }</span></li> }
@@ -130,8 +130,8 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
                     </>
                   :
                     <>
-                      <h1 className='no-coat rubik-title'><b style={{fontSize: 'large'}}>{ countryInfo.name.official }</b></h1>
-                      <div className='info-container' style={{width: '72%'}}>
+                      <h1 className='no-coat rubik-title'><b style={{fontSize: 'xx-large'}}>{ countryInfo.name.official }</b></h1>
+                      <div className='info-container-no-coat' style={{width: '72%'}}>
                         { isCapital > 0 && <li className='stats-placement'><b>Capital city: </b><span className='info-italic'>{ countryInfo.capital }</span></li> }
                         { isPopulation > 0 && <li className='stats-placement'><b>Population: </b><span className='info-italic'>{ countryInfo.population }</span></li> }
                         { isDemonym > 0 && <li className='stats-placement'><b>Demonym: </b><span className='info-italic'>{ Object.values(countryInfo.demonyms)[0].m }</span></li> }
