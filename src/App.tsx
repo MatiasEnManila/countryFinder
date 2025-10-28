@@ -7,12 +7,6 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
-// TODO
-// Loading component
-//  
-// 
-
-
 function App() {
   
   const [countryName, setCountryName] = useState('');
@@ -63,14 +57,14 @@ function App() {
 
 
   const customStyles = {
-  control: (base, state) => ({
-    ...base,
-    height: '35px',
-    minHeight: '35px',
-    width: '280px',
-    flex: 1
-  })
-}
+    control: (base, state) => ({
+      ...base,
+      height: '35px',
+      minHeight: '35px',
+      width: '280px',
+      flex: 1
+    })
+  }
 
 
   if (frontFace) {
@@ -93,14 +87,14 @@ function App() {
         </div>
       </>
     );
-    } else {
-      return (
-        < DisplayCountry 
-            goBack={goBack}
-            countryInputName={countryName}
-        />
-      )
-    }
+  } else {
+    return (
+      < DisplayCountry 
+          goBack={goBack}
+          countryInputName={countryName}
+      />
+    )
+  }
 }
 
 

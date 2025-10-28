@@ -4,16 +4,15 @@ import './DisplayCountry.css';
 import Map from './Map';
 
 
-// TODO
-// bg color
-// ALL RESPONSIVE 
+// TODO // bg color
 
-function DisplayCountry({ goBack, countryInputName } : object | string) {
+
+function DisplayCountry({ goBack, countryInputName } : object | string ) {
+  
   const [isLoading, setIsLoading] = useState(true);
   const [isItDisplayCountry, setIsItDisplayCountry] = useState(true);
   const [countryInfo, setCountryInfo] = useState(null);
 
-  // Validating properties
   const [isCoat, setIsCoat] = useState(0);
   const [isCapital, setIsCapital] = useState(0);
   const [isPopulation, setIsPopulation] = useState(0);
@@ -21,7 +20,6 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
   const [isCurrency, setIsCurrency] = useState(0);
   const [isLanguages, setIsLanguages] = useState(0);
   const [isSubregion, setIsSubregion] = useState(0);
-
 
   const apiKey = import.meta.env.VITE_API_SECRET
   const countryMap = `https://www.google.com/maps/embed/v1/place?${apiKey}q=${countryInputName}`;

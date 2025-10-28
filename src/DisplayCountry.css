@@ -97,7 +97,7 @@
 
 
 
-/* RESPONSIVE */
+/* R E S P O N S I V E */
 
 @media (min-width: 800px) {
 
@@ -120,7 +120,7 @@
     }
 
     .country-font {
-        font-size: xx-large;
+        font-size: xxx-large;
         padding-top: 10px;
     }
 
