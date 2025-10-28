@@ -59,6 +59,7 @@
     .backinfo-btn {
         height: 4rem;
         width: 14rem;
+        margin-left: 34.5%;
     }
 }
 
@@ -67,20 +68,36 @@
     .map-main-div {  
         width: 390px;
     }
+
+    .backinfo-btn {
+        margin-left: 33%;
+    }
 }
 
 
 @media (max-width: 440px) {
+
     .map-main-div {  
         width: 360px;
+    }
+
+    .backinfo-btn {
+        width: 30.4%;
+        margin-left: 35%;
     }
 }
 
 
 @media (min-width: 361px) and (max-width: 390px) {
+
     .map-main-div {  
         height: 630px;
         width: 330px;
+    }
+
+    .backinfo-btn {
+        width: 34%;
+        margin-left: 33.5%;
     }
 }
 

@@ -4,7 +4,7 @@ import './DisplayCountry.css';
 import Map from './Map';
 
 
-// TODO // bg color
+// TODO // bg color - choosing
 
 
 function DisplayCountry({ goBack, countryInputName } : object | string ) {
