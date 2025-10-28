@@ -97,7 +97,7 @@ function DisplayCountry({ goBack, countryInputName } : object | string ) {
     return (  
       <>
         <div className='display-container'>
-          <div className='no-coat-placement' style={{ display: 'flex', flexDirection: 'column', marginTop: '5%', alignItems: 'center' }}>
+          <div className='no-coat-placement' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             { countryInfo && 
               <>
                 { isCoat > 0 ?
@@ -130,14 +130,14 @@ function DisplayCountry({ goBack, countryInputName } : object | string ) {
                     <>
                       <h1 className='no-coat rubik-title'><b className='country-font-no-coat'>{ countryInfo.name.official }</b></h1>
                       <div className='info-container-no-coat'>
-                        { isCapital > 0 && <li className='stats-placement'><b>Capital city: </b><span className='info-italic'>{ countryInfo.capital }</span></li> }
-                        { isPopulation > 0 && <li className='stats-placement'><b>Population: </b><span className='info-italic'>{ countryInfo.population }</span></li> }
-                        { isDemonym > 0 && <li className='stats-placement'><b>Demonym: </b><span className='info-italic'>{ Object.values(countryInfo.demonyms)[0].m }</span></li> }
-                        { isLanguages > 0 && <li className='stats-placement'><b>Official languages: </b><span className='info-italic'>{ getOfficialLanguages(countryInfo) }</span></li> }
-                        { isCurrency > 0 && <li className='stats-placement'><b>Currency: </b><span className='info-italic'>{ Object.values(countryInfo.currencies)[0].name }</span></li> }
-                        <li className='stats-placement'><b>Timezone: </b><span className='info-italic'>{ countryInfo.timezones[0] }</span></li>
-                        <li className='stats-placement'><b>Region: </b><span className='info-italic'>{ countryInfo.region }</span></li>
-                        { isSubregion > 0 && <li className='stats-placement'><b>Subregion: </b><span className='info-italic'>{ countryInfo.subregion || countryInfo.subRegion }</span></li> }
+                        { isCapital > 0 && <li className='stats-placement-no-coat'><b>Capital city: </b><span className='info-italic'>{ countryInfo.capital }</span></li> }
+                        { isPopulation > 0 && <li className='stats-placement-no-coat'><b>Population: </b><span className='info-italic'>{ countryInfo.population }</span></li> }
+                        { isDemonym > 0 && <li className='stats-placement-no-coat'><b>Demonym: </b><span className='info-italic'>{ Object.values(countryInfo.demonyms)[0].m }</span></li> }
+                        { isLanguages > 0 && <li className='stats-placement-no-coat'><b>Official languages: </b><span className='info-italic'>{ getOfficialLanguages(countryInfo) }</span></li> }
+                        { isCurrency > 0 && <li className='stats-placement-no-coat'><b>Currency: </b><span className='info-italic'>{ Object.values(countryInfo.currencies)[0].name }</span></li> }
+                        <li className='stats-placement-no-coat'><b>Timezone: </b><span className='info-italic'>{ countryInfo.timezones[0] }</span></li>
+                        <li className='stats-placement-no-coat'><b>Region: </b><span className='info-italic'>{ countryInfo.region }</span></li>
+                        { isSubregion > 0 && <li className='stats-placement-no-coat'><b>Subregion: </b><span className='info-italic'>{ countryInfo.subregion || countryInfo.subRegion }</span></li> }
                       </div>
                     </>
                 }

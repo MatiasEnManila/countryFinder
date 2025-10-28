@@ -90,6 +90,11 @@
     font-size: smaller;  
 }
 
+.stats-placement-no-coat {
+    text-align: left;
+    margin-left: 25px;
+}
+
 
 .no-coat-placement {
     margin-top: 0px;
@@ -170,7 +175,7 @@
 
     .info-container-no-coat {
         height: 25rem;
-        width: 25rem;
+        width: 35rem;
         margin-left: 1.1rem;
         margin-bottom: 3rem;
         align-content: center;
@@ -178,6 +183,11 @@
         border: 8px solid black;
         border-radius: 35px;
         background-color: #F1AD02;
+    }
+
+    .stats-placement-no-coat {
+        font-size: x-large;
+        text-align: center;
     }
 }
 
@@ -187,6 +197,10 @@
 
     .display-container {  
         width: 390px;
+    }
+
+    .svg {
+        margin-top: 12.5%;
     }
 
     .country-title {
@@ -211,9 +225,9 @@
 
     /* NO COAT */
 
-    .no-coat-placement {
-        margin-top: -9%;
-    }
+    /* .no-coat-placement {
+        margin-top: -5%;
+    } */
 
 
     .no-coat {
@@ -289,6 +303,7 @@
     
     .no-coat {
         margin-left: 0px;
+        margin-top: 35%;
     }
     .country-font-no-coat {
         font-size: large;
@@ -310,7 +325,7 @@
 
     .svg {
         height: 150px;
-        margin-top: 7%;
+        margin-top: 45%;
     }
 
     .info-container {
@@ -321,6 +336,8 @@
 
     .country-title {
         height: 3.5rem;
+        width: 19.5rem;
+        margin-top: 25px;
         margin-bottom: 10px;
         display: flex;
         justify-content: center;
@@ -328,7 +345,7 @@
     }
 
     .country-font {
-        margin-top: 5px;
+        margin-top: 0.7rem;
         font-size: large;
   }
 
@@ -345,6 +362,8 @@
 
     .no-coat {
         height: 4rem;
+        width: 20rem;
+        margin-top: 50%;
         margin-left: 0px;
     }
 
@@ -372,6 +391,7 @@
 
 
 @media (min-width: 326px) and (max-width: 360px) {
+
     .display-container {  
         height: 670px;
         width: 310px;
@@ -381,9 +401,10 @@
         width: 82%;
         margin-left: -5px;
     }
-
-
+ 
     .country-font {
+        text-align: center;
+        margin-top: 7px;
         font-size: medium;
     }
 
@@ -405,7 +426,7 @@
     }
 
     .info-container-no-coat { 
-        height: 14rem;
+        height: 16rem;
         width: 16rem;
         margin-left: 0.5rem;
         margin-bottom: 1rem;
@@ -416,10 +437,12 @@
         background-color: #F1AD02;
     }
 
-    .country-font {
-        text-align: center;
-        margin-top: 7px;
+    .stats-placement-no-coat {
+        /* text-align: center; */
+        font-size: medium;
+        margin-left: 4.5%;
     }
+
 }
 
 
