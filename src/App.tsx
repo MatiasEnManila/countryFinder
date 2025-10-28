@@ -56,15 +56,32 @@ function App() {
   }
 
 
-  const customStyles = {
-    control: (base, state) => ({
-      ...base,
-      height: '35px',
-      minHeight: '35px',
-      width: '280px',
-      flex: 1
-    })
+
+  const mediaQueryString800px = 'min-width: 800px';
+  const mq800px = window.matchMedia(mediaQueryString800px);  
+
+  const mediaQuery = () => {
+    if (mq800px.matches) {
+      const customStyles = {
+        control: (base, state) => ({
+          ...base,
+          height: '35px',
+          minHeight: '35px',
+          width: '280px',
+          flex: 1
+        })
+      }
+    } else {
+      const customMq800 = {
+        control: (base, state) => ({
+          ...base,
+          width: '25rem',
+          // minHeight: '20rem'
+        })
+      }
+    }
   }
+
 
 
   if (frontFace) {
@@ -78,7 +95,7 @@ function App() {
                   options={ allCountriesNames }
                   onChange={ handleSuggestion } 
                   placeholder='Search Country'
-                  styles={ customStyles }
+                  styles={ mediaQuery }
                 />
               </div>
             <button type="button" className='btn btn-dark search-button' onClick={ getDisplayCountry }>Search</button>

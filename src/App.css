@@ -84,7 +84,7 @@ body {
 
 .search-button {
   width: 285px;
-  height: 40px;
+  height: 45px;
   margin-top: 5px;
 }
 
@@ -122,6 +122,7 @@ body {
 /* RESPONSIVE */
 
 @media (min-width: 800px) {
+
     .frontface-div {  
        width: 47rem;
        height: 70rem;
@@ -134,20 +135,26 @@ body {
     }
 
     .select-input {
-      width: 10rem;
-      margin-left: 15rem;
+      width: 25rem;
+      margin-left: 11rem;
     }
     
     .search-button {
-      height: 3.5rem;
+      height: 3rem;
       width: 25rem;
-      margin-top: 1.5rem;
+      margin-top: 0.5rem;
     }
 
     .world-picture {
       width: 50rem;
       margin-left: -1rem;
     }
+
+
+  .world-picture {
+    margin-top: 20px;
+  }
+
 }
 
 
@@ -170,6 +177,10 @@ body {
   .select-input {
     margin-left: 41px;
   }
+
+  .world-picture {
+    margin-top: 55px;
+  }
 }
 
 
@@ -181,6 +192,16 @@ body {
 
    .select-input {
     margin-left: 25px; 
+  }
+
+
+  .search-button {
+    height: 42px;
+    margin-top: 10px;
+  }
+
+  .world-picture {
+    margin-top: 55px;
   }
 
 }
