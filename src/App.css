@@ -152,6 +152,7 @@ body {
     }
 }
 
+
 @media (max-width: 490px) {
   .frontface-div {  
     width: 390px;
@@ -161,6 +162,7 @@ body {
     margin-left: 57px;
   }
 }
+
 
 @media (max-width: 440px) {
   .frontface-div {  

@@ -13,11 +13,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: 60px; */
     width: 91%;
     margin-top: 25px;
     margin-bottom: 10px;
-    /* margin-left: 18px; */
     padding-bottom: 10px;
     background-color: #F1AD02;
     border: 4px solid black;
@@ -36,7 +34,6 @@
 
 .svg {
     height: 200px;
-    /* width: 40%; */
     margin-top: 5%;
 }
 
@@ -93,19 +90,16 @@
     font-size: smaller;  
 }
 
+
+.no-coat-placement {
+    margin-top: 0px;
+}
+
+
+
 /* RESPONSIVE */
 
 @media (min-width: 800px) {
-    .root {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 7.5px;
-        border-radius: 30px;
-        border: 10px solid black;
-        text-align: center;
-        background-color: rgb(0, 0, 0);
-    }
-
 
     .display-container {  
        width: 47rem;
@@ -114,19 +108,19 @@
 
     .svg {
         height: 20rem;
-        width: 22rem;
+        width: 21.5rem;
         margin-top: 3rem;
     }
 
     .country-title {
-        height: 6rem;
+        height: 7rem;
         margin-top: 3rem;
         margin-bottom: 3rem;
         border: 8px solid black;
     }
 
     .country-font {
-        font-size: xxx-large;
+        font-size: xx-large;
         padding-top: 10px;
     }
 
@@ -162,12 +156,17 @@
 
 
     /* NO COAT */
-
     .no-coat {
-        height: 7rem;
+        height: 7.5rem;
         margin-bottom: 2rem;
         border: 8px solid black;
     }
+
+    .country-font-no-coat {
+        width: 72%;
+        font-size: xx-large;
+    }
+
 
     .info-container-no-coat {
         height: 25rem;
@@ -180,32 +179,130 @@
         border-radius: 35px;
         background-color: #F1AD02;
     }
-
-
 }
 
 
 
-@media (max-width: 490px) {
+@media (min-width: 441px) and (max-width: 800px) {
+
     .display-container {  
         width: 390px;
     }
 
+    .country-title {
+        height: 55px
+    }
+
     .country-font {
-        font-size: x-large;
+        font-size: large;
+        margin-top: 7px;
+    }
+
+
+    .info-container {
+        width: 75%;
+        margin-top: 12px;
+        margin-left: 2.5px;
+    }
+
+    .buttons {
+        margin-top: 25px;
+    }
+
+    /* NO COAT */
+
+    .no-coat-placement {
+        margin-top: -9%;
+    }
+
+
+    .no-coat {
+        margin-left: 0px;
+    }
+
+    .country-font-no-coat {
+        font-size: large;
+    }
+
+    .info-container-no-coat { 
+        height: 19rem;
+        width: 17rem;
+        margin-left: 0.5rem;
+        list-style-type: none;
+        align-content: center;
+        border: 5px solid black;
+        border-radius: 29px;
+        background-color: #F1AD02;
     }
 }
+
+
+
+/* THIS ONE STYLE */
 
 
 @media (max-width: 440px) {
+
+    .country-title {
+        height: 60px;
+    }
+
+
+    .info-container {
+        width: 75%;
+        margin-top: 10px;
+        margin-left: -1px;
+    }
+
+
     .display-container {  
         width: 360px;
+    }
+
+    
+    .country-font {
+        margin-top: 6px;
+        font-size: large;
+    }
+
+     .info-container-no-coat { 
+        height: 19rem;
+        width: 17rem;
+        margin-left: 0.5rem;
+        list-style-type: none;
+        align-content: center;
+        border: 5px solid black;
+        border-radius: 29px;
+        background-color: #F1AD02;
+    }
+
+    .buttons {
+        margin-top: 25px;
+    }
+
+
+    /* NO COAT */
+
+    .no-coat-placement {
+        margin-top: 9%;
+    }
+    
+    .no-coat {
+        margin-left: 0px;
+    }
+    .country-font-no-coat {
+        font-size: large;
     }
 }
 
 
-/* REVISE REVISE */
+
+
+
+
+
 @media (min-width: 361px) and (max-width: 390px) {
+
     .display-container {  
         height: 630px;
         width: 330px;
@@ -218,10 +315,13 @@
 
     .info-container {
         width: 80%;
-        margin-left: 1.5%;
+        margin-top: 10px;
+        margin-left: 1%;
     }
 
     .country-title {
+        height: 3.5rem;
+        margin-bottom: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -231,26 +331,134 @@
         margin-top: 5px;
         font-size: large;
   }
+
+  .country-font-no-coat {
+       font-size: large;
+    }
+
+
+    /* NO COAT */
+
+    .no-coat-placement {
+        margin-top: -10%
+    }
+
+    .no-coat {
+        height: 4rem;
+        margin-left: 0px;
+    }
+
+    .info-container-no-coat { 
+        height: 16rem;
+        width: 17rem;
+        margin-left: 1px;
+        list-style-type: none;
+        align-content: center;
+        border: 5px solid black;
+        border-radius: 29px;
+        background-color: #F1AD02;
+    }
+
+    .buttons {
+        margin-top: 30px;
+    }
 }
 
 
-@media (min-width: 325px) and (max-width: 360px) {
+
+
+
+
+
+
+@media (min-width: 326px) and (max-width: 360px) {
     .display-container {  
         height: 670px;
         width: 310px;
     }
 
     .info-container {
-        width: 75%;
-        margin-left: 1px;
+        width: 82%;
+        margin-left: -5px;
+    }
+
+
+    .country-font {
+        font-size: medium;
+    }
+
+    .buttons {
+        margin-top: 30px;
+    }
+
+
+    /* no coat */
+
+
+    .no-coat {
+        margin-left: 0;
+    }
+
+    .country-font-no-coat {
+        font-size: large;
+        width: 20rem;
+    }
+
+    .info-container-no-coat { 
+        height: 14rem;
+        width: 16rem;
+        margin-left: 0.5rem;
+        margin-bottom: 1rem;
+        list-style-type: none;
+        align-content: center;
+        border: 5px solid black;
+        border-radius: 29px;
+        background-color: #F1AD02;
+    }
+
+    .country-font {
+        text-align: center;
+        margin-top: 7px;
     }
 }
 
 
-@media (max-width: 324px) {
+
+
+@media  (max-width: 325px) {
+
     .display-container {  
         height: 670px;
         width: 290px;
+    }
+
+
+    /* no coat */
+
+    .no-coat {
+        margin-left: 0px;
+    }
+
+    .info-container-no-coat {
+        height: 12rem;
+        width: 15rem;
+        margin-left: 0.5rem;
+        margin-bottom: 2rem;
+        list-style-type: none;
+        align-content: center;
+        border: 4px solid black;
+        border-radius: 29px;
+        background-color: #F1AD02;
+    }
+
+    .country-font-no-coat {
+        font-size: large;
+        width: 20rem;
+    }
+
+
+    .country-font {
+        font-size: large;
     }
 }
 

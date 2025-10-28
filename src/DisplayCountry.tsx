@@ -99,7 +99,7 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
     return (  
       <>
         <div className='display-container'>
-          <div style={{ display: 'flex', flexDirection: 'column', marginTop: '5%', alignItems: 'center' }}>
+          <div className='no-coat-placement' style={{ display: 'flex', flexDirection: 'column', marginTop: '5%', alignItems: 'center' }}>
             { countryInfo && 
               <>
                 { isCoat > 0 ?
@@ -130,8 +130,8 @@ function DisplayCountry({ goBack, countryInputName } : object | string) {
                     </>
                   :
                     <>
-                      <h1 className='no-coat rubik-title'><b style={{fontSize: 'xx-large'}}>{ countryInfo.name.official }</b></h1>
-                      <div className='info-container-no-coat' style={{width: '72%'}}>
+                      <h1 className='no-coat rubik-title'><b className='country-font-no-coat'>{ countryInfo.name.official }</b></h1>
+                      <div className='info-container-no-coat'>
                         { isCapital > 0 && <li className='stats-placement'><b>Capital city: </b><span className='info-italic'>{ countryInfo.capital }</span></li> }
                         { isPopulation > 0 && <li className='stats-placement'><b>Population: </b><span className='info-italic'>{ countryInfo.population }</span></li> }
                         { isDemonym > 0 && <li className='stats-placement'><b>Demonym: </b><span className='info-italic'>{ Object.values(countryInfo.demonyms)[0].m }</span></li> }
