@@ -34,7 +34,6 @@
 
 .svg {
     height: 200px;
-    margin-top: 5%;
 }
 
 
@@ -100,6 +99,8 @@
 .no-coat-placement {
     margin-top: 0px;
 }
+
+
 
 
 /* R E S P O N S I V E */
@@ -405,10 +406,6 @@
 
 
 
-
-
-
-
 @media (min-width: 326px) and (max-width: 360px) {
 
     .display-container {  
@@ -416,16 +413,19 @@
         width: 310px;
     }
 
+    
     .info-container {
         width: 85%;
         /* margin-left: -5px; */
     }
  
+
     .country-font {
         text-align: center;
         margin-top: 7px;
         font-size: medium;
     }
+
 
     .buttons {
         margin-top: 30px;
@@ -439,10 +439,12 @@
         margin-left: 0;
     }
 
+
     .country-font-no-coat {
         font-size: large;
         width: 20rem;
     }
+
 
     .info-container-no-coat { 
         height: 16rem;
@@ -456,6 +458,7 @@
         background-color: #F1AD02;
     }
 
+    
     .stats-placement-no-coat {
         /* text-align: center; */
         font-size: medium;
@@ -481,6 +484,7 @@
         margin-left: 0px;
     }
 
+
     .info-container-no-coat {
         height: 12rem;
         width: 15rem;
@@ -492,6 +496,7 @@
         border-radius: 29px;
         background-color: #F1AD02;
     }
+
 
     .country-font-no-coat {
         font-size: large;

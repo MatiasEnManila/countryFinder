@@ -4,9 +4,6 @@ import './DisplayCountry.css';
 import Map from './Map';
 
 
-// TODO // bg color - choosing
-
-
 function DisplayCountry({ goBack, countryInputName } : object | string ) {
   
   const [isLoading, setIsLoading] = useState(true);

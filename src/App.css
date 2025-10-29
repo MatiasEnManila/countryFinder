@@ -1,5 +1,5 @@
 body {
-  background-color: green ;
+  background-color: #081F40 !important;
 }
 
 #root {
@@ -7,7 +7,7 @@ body {
   margin: 0 auto;
   padding: 7.5px;
   border-radius: 30px;
-  border: 3px solid black;
+  border: 4px solid goldenrod;
   text-align: center;
   background-color: rgb(20, 20, 20);
 }
@@ -51,7 +51,7 @@ body {
 
 
 
-/* FROM HERE ON */
+/* CLASSES */
 
 
 .frontface-div {
@@ -69,6 +69,7 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
 
 .title {
   padding-top: 50px;
@@ -101,15 +102,18 @@ body {
   margin-top: 35px;
 }
 
+
 .suggestions {
   list-style-type: none;
 }
+
 
 .bbh-sans-bogle-regular {
   font-family: "BBH Sans Bogle", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
+
 
 .rubik-search {
   font-family: "Rubik", sans-serif;
@@ -123,32 +127,35 @@ body {
 
 @media (min-width: 800px) {
 
-    .frontface-div {  
-       width: 47rem;
-       height: 70rem;
-    }
+  .frontface-div {  
+      width: 47rem;
+      height: 70rem;
+  }
 
 
-    .title {
-      margin-bottom: 6rem;
-      font-size: xxx-large;
-    }
+  .title {
+    margin-bottom: 6rem;
+    font-size: xxx-large;
+  }
 
-    .select-input {
-      width: 25rem;
-      margin-left: 11rem;
-    }
-    
-    .search-button {
-      height: 3rem;
-      width: 25rem;
-      margin-top: 0.5rem;
-    }
 
-    .world-picture {
-      width: 50rem;
-      margin-left: -1rem;
-    }
+  .select-input {
+    width: 25rem;
+    margin-left: 11rem;
+  }
+  
+
+  .search-button {
+    height: 3rem;
+    width: 25rem;
+    margin-top: 0.5rem;
+  }
+
+  
+  .world-picture {
+    width: 50rem;
+    margin-left: -1rem;
+  }
 
 
   .world-picture {
@@ -159,9 +166,11 @@ body {
 
 
 @media (max-width: 490px) {
+
   .frontface-div {  
     width: 390px;
   }
+
 
   .select-input {
     margin-left: 57px;
@@ -170,13 +179,16 @@ body {
 
 
 @media (max-width: 440px) {
+
   .frontface-div {  
     width: 360px;
   }
 
+
   .select-input {
     margin-left: 41px;
   }
+
 
   .world-picture {
     margin-top: 55px;
@@ -185,10 +197,12 @@ body {
 
 
 @media (max-width: 390px) {
+
   .frontface-div {  
     height: 630px;
     width: 330px;
   }
+
 
    .select-input {
     margin-left: 25px; 
@@ -200,6 +214,7 @@ body {
     margin-top: 10px;
   }
 
+
   .world-picture {
     margin-top: 55px;
   }
@@ -208,11 +223,13 @@ body {
 
 
 @media (min-width: 325px) and (max-width: 360px) {
+
   .frontface-div {  
     height: 630px;
     width: 300px;
   }
 
+  
   .select-input {
       margin-left: 11px;
   }

@@ -4,13 +4,14 @@
     height: 670px;
     width: 435px;
     border-radius: 35%;
-    background-color:  #081F40;
+    background-color: #0E356D;
 }
 
 
 .bg-map {
     background-color: black;
 }
+
 
 .map-styling {
     height: 95%;
@@ -19,6 +20,7 @@
     margin-bottom: 20px;
     
 }
+
 
 .country-flag {
     background-color: #F1AD02;
@@ -29,6 +31,7 @@
     margin-top: 2%;
     padding-bottom: 5px;
 }
+
 
 .backinfo-btn {
     width: 26%;
@@ -44,10 +47,12 @@
 
 
 @media (min-width: 800px) {
+
     .map-main-div {  
        width: 47rem;
        height: 70rem;
     }
+
 
     .country-flag {
         width: 15rem;
@@ -55,6 +60,7 @@
         margin-left: 16.6rem;
         margin-bottom: 1rem;
     }
+
 
     .backinfo-btn {
         height: 4rem;
@@ -65,12 +71,14 @@
 
 
 @media (max-width: 490px) {
+
     .map-main-div {  
         width: 390px;
     }
 
+
     .backinfo-btn {
-        margin-left: 33%;
+        margin-left: 32.5%;
     }
 }
 
@@ -80,6 +88,7 @@
     .map-main-div {  
         width: 360px;
     }
+
 
     .backinfo-btn {
         width: 30.4%;
@@ -95,6 +104,7 @@
         width: 330px;
     }
 
+
     .backinfo-btn {
         width: 34%;
         margin-left: 33.5%;
@@ -103,6 +113,7 @@
 
 
 @media (min-width: 325px) and (max-width: 360px) {
+
     .map-main-div {  
         height: 670px;
         width: 310px;
@@ -111,6 +122,7 @@
 
 
 @media (max-width: 325px) {
+    
     .map-main-div {  
         height: 670px;
         width: 290px;
