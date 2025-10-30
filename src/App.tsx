@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react';
-import Select from 'react-select';
+import { useState } from 'react';
+import Select, { type StylesConfig } from 'react-select';
 import DisplayCountry from './DisplayCountry';
 import worldIcon from './pictures/hello-world2.png'
 import './App.css'
@@ -47,6 +47,8 @@ function App() {
    setCountryName('');
   }
 
+  console.log(typeof goBack)
+
 
   const handleSuggestion = (suggestion) => { 
     if (suggestion) {
@@ -63,7 +65,8 @@ function App() {
   const mediaQuery = () => {
     if (mq800px.matches) {
       const customStyles = {
-        control: (base, state) => ({
+
+        control: (base) => ({
           ...base,
           height: '35px',
           minHeight: '35px',
@@ -73,7 +76,7 @@ function App() {
       }
     } else {
       const customMq800 = {
-        control: (base, state) => ({
+        control: (base) => ({
           ...base,
           width: '25rem',
           // minHeight: '20rem'
@@ -95,6 +98,7 @@ function App() {
                   options={ allCountriesNames }
                   onChange={ handleSuggestion } 
                   placeholder='Search Country'
+                  // @ts-ignore
                   styles={ mediaQuery }
                 />
               </div>
@@ -107,8 +111,8 @@ function App() {
   } else {
     return (
       < DisplayCountry 
-          goBack={goBack}
-          countryInputName={countryName}
+          goBack={ goBack }
+          countryInputName={ countryName }
       />
     )
   }

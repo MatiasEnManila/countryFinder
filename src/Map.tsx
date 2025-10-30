@@ -1,7 +1,7 @@
 import './Map.css';
 
 
-function Map({ goBackToDisplay, map, countryInfo } : string | object ) {
+function Map({ goBackToDisplay, map, countryInfo } : string | object | any) {
 
   let flagIcon = countryInfo.flag;
     
