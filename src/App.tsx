@@ -63,29 +63,6 @@ function App() {
   const mediaQueryString800px = 'min-width: 800px';
   const mq800px = window.matchMedia(mediaQueryString800px);  
 
-  // obj no func
-  const mediaQuery = () => {
-    if (mq800px.matches) {
-      return {
-        control: (base) => ({
-          ...base,
-          height: '35px',
-          minHeight: '35px',
-          width: '280px',
-          flex: 1
-        })
-      }
-    } else {
-        return {
-        control: (base) => ({
-          ...base,
-          width: '25rem',
-          // minHeight: '20rem'
-        })
-      }
-    }
-  }
-
 
 
   if (frontFace) {
@@ -99,7 +76,13 @@ function App() {
                   options={ allCountriesNames }
                   onChange={ handleSuggestion } 
                   placeholder='Search Country'
-                  styles={ mediaQuery() }
+                  styles={ mq800px.matches && { control: (baseStyles) => ({
+                    ...baseStyles, 
+                    height: '35px',
+                    minHeight: '35px',
+                    width: '280px',
+                    flex: 1})
+                  }}
                 />
               </div>
             <button type="button" className='btn btn-dark search-button' onClick={ getDisplayCountry }>Search</button>
