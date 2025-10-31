@@ -1,10 +1,10 @@
 import './Map.css';
 
 
-function Map({ goBackToDisplay, map, countryInfo } : string | object | any) {
+function Map({ goBackToDisplay, map, countryInfo } : {goBackToDisplay: () => void; map: string; countryInfo: string | any } ) {
 
-  let flagIcon = countryInfo.flag;
-    
+
+  console.log("nihao")
   return (
     <>
       <div className='map-main-div'>
@@ -16,7 +16,7 @@ function Map({ goBackToDisplay, map, countryInfo } : string | object | any) {
             referrerPolicy="no-referrer-when-downgrade">
           </iframe>
         </div>
-        <h5 className="display-1 country-flag">{ flagIcon }</h5>
+        <h5 className="display-1 country-flag">{ countryInfo.flag }</h5>
         <button className='btn btn-success backinfo-btn' onClick={ goBackToDisplay }>Back to info</button>  
       </div>
     </>     

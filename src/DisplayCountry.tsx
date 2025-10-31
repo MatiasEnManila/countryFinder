@@ -4,7 +4,7 @@ import './DisplayCountry.css';
 import Map from './Map';
 
 
-function DisplayCountry({ goBack, countryInputName } : object | string | any ) {
+function DisplayCountry({ goBack, countryInputName } : { goBack: () => void; countryInputName: string }) {
 
   const [isLoading, setIsLoading] = useState(true);
   const [isItDisplayCountry, setIsItDisplayCountry] = useState(true);
@@ -40,6 +40,7 @@ function DisplayCountry({ goBack, countryInputName } : object | string | any ) {
       setIsDemonym(Object.values(data[0].demonyms).length);
       setIsCurrency(Object.values(data[0].currencies).length);
       setIsLanguages(Object.values(data[0].languages).length);
+
 
       if (data[0].subRegion) {
         setIsSubregion(data[0].subRegion.length);
@@ -86,8 +87,7 @@ function DisplayCountry({ goBack, countryInputName } : object | string | any ) {
       }
       return officialLanguages
   }
-      
- 
+    
 
       
   if (isItDisplayCountry) {

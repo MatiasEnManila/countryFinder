@@ -42,12 +42,13 @@ function App() {
   }
 
 
+
+
   const goBack = () => {
    setFrontFace(!frontFace);
    setCountryName('');
   }
 
-  console.log(typeof goBack)
 
 
   const handleSuggestion = (suggestion) => { 
@@ -62,10 +63,10 @@ function App() {
   const mediaQueryString800px = 'min-width: 800px';
   const mq800px = window.matchMedia(mediaQueryString800px);  
 
+  // obj no func
   const mediaQuery = () => {
     if (mq800px.matches) {
-      const customStyles = {
-
+      return {
         control: (base) => ({
           ...base,
           height: '35px',
@@ -75,7 +76,7 @@ function App() {
         })
       }
     } else {
-      const customMq800 = {
+        return {
         control: (base) => ({
           ...base,
           width: '25rem',
@@ -98,8 +99,7 @@ function App() {
                   options={ allCountriesNames }
                   onChange={ handleSuggestion } 
                   placeholder='Search Country'
-                  // @ts-ignore
-                  styles={ mediaQuery }
+                  styles={ mediaQuery() }
                 />
               </div>
             <button type="button" className='btn btn-dark search-button' onClick={ getDisplayCountry }>Search</button>
