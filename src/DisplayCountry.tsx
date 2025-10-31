@@ -23,6 +23,7 @@ function DisplayCountry({ goBack, countryInputName } : { goBack: () => void; cou
 
 
   const getCountryInfo = async () => {
+    
     try {
 
       const response = await fetch(`https://restcountries.com/v3.1/name/${countryInputName}?fullText=true`);
@@ -151,9 +152,9 @@ function DisplayCountry({ goBack, countryInputName } : { goBack: () => void; cou
   } else {
       return (
         <Map 
-          goBackToDisplay={seeMap}
-          map={countryMap}
-          countryInfo={countryInfo}
+          goBackToDisplay={ seeMap }
+          map={ countryMap }
+          countryInfo={ countryInfo }
         />
     )
   }

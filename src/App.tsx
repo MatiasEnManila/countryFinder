@@ -42,13 +42,10 @@ function App() {
   }
 
 
-
-
   const goBack = () => {
    setFrontFace(!frontFace);
    setCountryName('');
   }
-
 
 
   const handleSuggestion = (suggestion) => { 
@@ -59,10 +56,8 @@ function App() {
   }
 
 
-
   const mediaQueryString800px = 'min-width: 800px';
   const mq800px = window.matchMedia(mediaQueryString800px);  
-
 
 
   if (frontFace) {

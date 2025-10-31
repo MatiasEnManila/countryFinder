@@ -3,8 +3,6 @@ import './Map.css';
 
 function Map({ goBackToDisplay, map, countryInfo } : {goBackToDisplay: () => void; map: string; countryInfo: string | any } ) {
 
-
-  console.log("nihao")
   return (
     <>
       <div className='map-main-div'>

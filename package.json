@@ -1,12 +1,12 @@
 {
   "name": "my-app",
-  "homepage": "https://matiasenmanila.github.io/react-gh-pages/",
+  "homepage": "https://matiasenmanila.github.io/countryFinder/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
