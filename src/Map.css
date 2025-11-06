@@ -57,7 +57,7 @@
     .country-flag {
         width: 15rem;
         margin-top: 2rem;
-        margin-left: 16.6rem;
+        margin-left: 15.8rem;
         margin-bottom: 1rem;
     }
 
@@ -78,7 +78,8 @@
 
 
     .backinfo-btn {
-        margin-left: 32.5%;
+        width: 28%;
+        margin-left: 35.5%;
     }
 }
 
@@ -117,6 +118,12 @@
     .map-main-div {  
         height: 670px;
         width: 310px;
+    }
+
+
+    .backinfo-btn {
+        width: 35.5%;
+        margin-left: 32.5%;
     }
 }
 
