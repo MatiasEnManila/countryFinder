@@ -145,6 +145,7 @@
     .stats-placement {
         text-align: center;
         font-size: x-large;
+        margin-right: 5%;
     }
 
 
@@ -340,7 +341,7 @@
 
     .svg {
         height: 150px;
-        margin-top: 45%;
+        margin-top: 40%;
     }
 
 
@@ -401,7 +402,7 @@
 
 
     .buttons {
-        margin-top: 30px;
+        margin-top: 5.5%;
     }
 }
 
